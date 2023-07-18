@@ -31,5 +31,10 @@ footer {
   color: #EEEEEE;
   text-align: center;
   font-family: 'Indie Flower', cursive;
+}
 
+.cc-link {
+  font-size: 2rem;
+  color: White;
+  font-family: 'Indie Flower', cursive;
 }
