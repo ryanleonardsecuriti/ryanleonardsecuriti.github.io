@@ -1,34 +1,41 @@
-@body, h1, h2, h3, h4, h5, h6 {
-  font-family: Helvetica;
-      font-style: normal;
+.container {
+  width: 70%;
+  margin: auto;
+  text-align: center;
 }
 
-@font-face {
-    font-family: 'OpenSans-Light';
-    font-weight: 300;
-    font-style: normal;
+.dice {
+  text-align: center;
+  display: inline-block;
+
 }
 
-@font-face {
-    font-family: 'OpenSans-Light';
-    font-weight: 300;
-    font-style: italic;
+body {
+  background-color: #FFC0CB;
 }
 
-@font-face {
-    font-family: 'OpenSans';
-    font-weight: 400;
-    font-style: normal;
+h1 {
+  margin: 30px;
+  font-family: 'Lobster', cursive;
+  text-shadow: 5px 0 #232931;
+  font-size: 8rem;
+  color: Black;
 }
 
-@font-face {
-    font-family: 'OpenSans';
-    font-weight: 400;
-    font-style: italic;
+p {
+  font-size: 2rem;
+  color: Black;
+  font-family: 'Indie Flower', cursive;
 }
 
-@font-face {
-    font-family: 'OpenSans-Semibold';
-    font-weight: 600;
-    font-style: normal;
+img {
+  width: 80%;
+}
+
+footer {
+  margin-top: 5%;
+  color: #EEEEEE;
+  text-align: center;
+  font-family: 'Indie Flower', cursive;
+
 }
