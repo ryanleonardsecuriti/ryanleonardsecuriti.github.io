@@ -38,3 +38,15 @@ footer {
   color: White;
   font-family: 'Indie Flower', cursive;
 }
+
+f-banner-header {
+  font-size: 2rem;
+  color: White;
+  font-family: 'Indie Flower', cursive;
+}
+
+.f-banner-body-text {
+  font-size: 2rem;
+  color: White;
+  font-family: 'Indie Flower', cursive;
+}
