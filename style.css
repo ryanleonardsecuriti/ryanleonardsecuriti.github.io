@@ -7,8 +7,8 @@
   width: 70%;
   margin: auto;
   text-align: center;
-  border: 1px solid red;
-  outline: 2px dashed blue;
+  border: 3px solid White;
+  background-color: #2a99a8; 
 }
 
 body {
