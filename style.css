@@ -5,8 +5,7 @@
 }
 
 .containerIndex {
-  width: 70%;
-  margin-top: 10px;
+  margin-top: auto;
   text-align: center;
 }
 
@@ -14,7 +13,6 @@
   width: 70%;
   margin: auto;
   text-align: center;
-  border: 3px solid White;
   background-color: #2a99a8; 
 }
 
