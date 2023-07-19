@@ -11,9 +11,9 @@ body {
 h1 {
   margin: 30px;
   font-family: 'Lobster', cursive;
-  text-shadow: 5px 0 #232931;
-  font-size: 8rem;
-  color: Black;
+  text-shadow: 2px 0 #232931;
+  font-size: 5rem;
+  color: #2a99a8;
 }
 
 p {
