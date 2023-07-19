@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: #085d85;
+  background-color: #011012;
 }
 
 h1 {
@@ -32,6 +32,17 @@ footer {
   text-align: center;
   font-family: 'Indie Flower', cursive;
 }
+
+a {
+  color: #49ccde;
+}
+a:visited {
+  color: #49ccde;
+}
+a:hover {
+  color: #39e3fa;
+}
+
 
 /*.cc-link {
   font-size: 2rem;
