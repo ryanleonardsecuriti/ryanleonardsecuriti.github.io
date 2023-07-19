@@ -3,6 +3,13 @@
   margin: auto;
   text-align: center;
 }
+
+.containerIndex {
+  width: 70%;
+  margin-top: 10px;
+  text-align: center;
+}
+
 .containerOutline {
   width: 70%;
   margin: auto;
