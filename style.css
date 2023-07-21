@@ -7,6 +7,9 @@
 .containerIndex {
   height: 100%;
   text-align: center;
+  background-color: #2a99a8; 
+  outline-color: Black;
+  outline-style: double;
 }
 
 .paraIndex {
