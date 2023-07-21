@@ -2135,6 +2135,7 @@ li.is-active .cmp-check-icon{
     display:inline-block;
     padding:.2em;
     text-decoration:underline
+    font-family: 'Indie Flower', cursive;
 }
 .cc-link:hover{
     opacity:1
