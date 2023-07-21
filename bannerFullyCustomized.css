@@ -107,3 +107,27 @@ a:hover {
 .cmp-category {
   font-family: 'Indie Flower', cursive;
 }
+
+.cmp-tabs__title {
+  font-family: 'Indie Flower', cursive;
+}
+
+.cmp-switch__label {
+  font-family: 'Indie Flower', cursive;
+}
+
+.cmp-tabs__sub-title {
+  font-family: 'Indie Flower', cursive;
+}
+
+.cmp-modal__footer .cmp-save-btn {
+  font-family: 'Indie Flower', cursive;
+}
+
+.cmp-accordion__title {
+  font-family: 'Indie Flower', cursive;
+}
+
+.cmp-accordion__sub-title {
+  font-family: 'Indie Flower', cursive;
+}
