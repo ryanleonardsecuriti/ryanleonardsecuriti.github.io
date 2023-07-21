@@ -69,12 +69,17 @@ footer {
 
 a {
   color: #49ccde;
+  text-decoration: underline;
 }
+
 a:visited {
   color: #49ccde;
+  text-decoration: underline;
 }
+
 a:hover {
   color: Black;
+  text-decoration: underline;
 }
 
 .cmp-revoke-consent.new {
