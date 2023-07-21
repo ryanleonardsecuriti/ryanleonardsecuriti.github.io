@@ -135,6 +135,9 @@ table, th, td {
   font-family: 'Indie Flower', cursive;
 }
 
+.cmp-tabs__opt-out.active {
+  font-family: 'Indie Flower', cursive;
+}
 .cmp-cookie-info {
   font-family: 'Indie Flower', cursive;
 }
