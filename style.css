@@ -33,6 +33,7 @@ footer {
 a {
   color: #49ccde;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 a:visited {
