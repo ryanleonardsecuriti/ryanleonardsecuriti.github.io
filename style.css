@@ -23,12 +23,12 @@
   margin: auto;
   text-align: center;
   background-color: #2a99a8; 
-  outline-color: white;
+  outline-color: Black;
   outline-style: double;
 }
 
 body {
-  background-color: #011012;
+  background-color: White;
 }
 
 h1 {
@@ -41,7 +41,7 @@ h1 {
 
 p {
   font-size: 2rem;
-  color: white;
+  color: Black;
   font-family: 'Indie Flower', cursive;
 }
 
@@ -51,7 +51,7 @@ img {
 
 footer {
   margin-top: 5%;
-  color: White;
+  color: Black;
   text-align: center;
   font-family: 'Indie Flower', cursive;
 }
