@@ -99,3 +99,11 @@ a:hover {
 .cc-link {
   font-family: 'Indie Flower', cursive;
 }
+
+cc-btn cc-allow cc-btn-format {
+  font-family: 'Indie Flower', cursive;
+}
+
+cmp-category {
+  font-family: 'Indie Flower', cursive;
+}
