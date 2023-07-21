@@ -12,8 +12,12 @@
 }
 
 .boxIndex {
-    position: relative;
-    top: 50%;
+  position: relative;
+  top: 50%;
+  background-color: #2a99a8; 
+  outline-color: Black;
+  outline-style: double;
+  border: 1px White;
 }
 
 .paraIndex {
