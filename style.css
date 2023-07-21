@@ -4,9 +4,13 @@
   text-align: center;
 }
 
-.containerIndex {
+.indexBody {
   height: 100%;
   text-align: center;
+
+}
+
+.indexBodyContainer {
   background-color: #2a99a8; 
   outline-color: Black;
   outline-style: double;
