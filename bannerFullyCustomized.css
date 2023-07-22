@@ -45,12 +45,12 @@ a:hover {
   text-decoration: underline;
 }
 
-table, th, td {
+table, th {
   border:1px solid black;
   text-align: center;
 }
 
-tr {
+td {
   text-decoration: none;
 }
 
