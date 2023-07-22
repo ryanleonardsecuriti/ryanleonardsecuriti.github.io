@@ -45,14 +45,12 @@ a:hover {
   text-decoration: underline;
 }
 
-table, th {
+table, th, td {
   border:1px solid black;
   text-align: center;
-}
-
-td {
   text-decoration: none;
 }
+
 
 /*---------------------------------*/
 /*Home Page CSS*/
