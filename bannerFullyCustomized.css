@@ -47,8 +47,11 @@ a:hover {
 
 table, th, td {
   border:1px solid black;
-  font-decoration: none;
   text-align: center;
+}
+
+tr {
+  text-decoration: none;
 }
 
 /*---------------------------------*/
