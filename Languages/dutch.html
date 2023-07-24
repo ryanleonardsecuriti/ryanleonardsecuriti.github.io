@@ -1,0 +1,36 @@
+<head>
+  <link rel='stylesheet' type='text/css' href='https://cdn-prod.securiti.ai/consent/cookie-consent.css' />
+  <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster" rel="stylesheet">
+  <link rel="stylesheet" href="https://ryanleonardsecuriti.github.io/style.css">
+</head>
+<body>
+	<div class="container">
+	<h1 style="font-family: Arial; font-size: 4rem">This is the Opt in banner machine translated to Dutch</h1>
+	<p><a href="https://ryanleonardsecuriti.github.io">Click Here to select a different banner</a></p>
+	</div>
+
+<script type="text/javascript" 
+src="https://cdn-prod.securiti.ai/consent/sdk-stub.js"></script>
+<!-- After adding this script, call setConsentBannerParams({uuid: <unique id> }) to set unique ID for a customer. -->
+<script>
+(function () {
+	var s = document.createElement('script');
+	s.src = 'https://cdn-prod.securiti.ai/consent/cookie-consent-sdk.js';
+	s.setAttribute('data-tenant-uuid', 'f849f6ee-3145-493e-a066-f4277dd87cb8');
+	s.setAttribute('data-domain-uuid', 'fa8faaa2-f491-4724-96bd-ef966cbc7ba9');
+	s.setAttribute('data-backend-url', 'https://app.securiti.ai');
+	var parent_node = document.head || document.body;
+        s.defer = true;
+	parent_node.appendChild(s);
+      	s.addEventListener('load', function() {
+           window.initCmp();
+           window.setConsentBannerParams(
+		{overrideBannerLanguage: {
+        'https://ryanleonardsecuriti.github.io/Languages/dutch': 'nl'	}
+	})
+       });
+})()
+</script>
+</body>
+<footer>
+</footer>
