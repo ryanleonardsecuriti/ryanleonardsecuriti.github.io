@@ -1,0 +1,93 @@
+/*All CSS*/
+
+body {
+  background-color: White;
+}
+
+h1 {
+  margin: 30px;
+  font-family: 'Lobster', cursive;
+  text-shadow: 2px 0 #000000;
+  font-size: 5rem;
+  color: #2a99a8;
+}
+
+p {
+  font-size: 1rem;
+  color: Black;
+  font-family: 'Indie Flower', cursive;
+}
+
+img {
+  width: 80%;
+}
+
+footer {
+  margin-top: 5%;
+  color: Black;
+  text-align: center;
+  font-family: 'Indie Flower', cursive;
+}
+
+a {
+  color: White;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+a:visited {
+  color: White;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: Black;
+  text-decoration: underline;
+}
+
+
+/*---------------------------------*/
+/*Home Page CSS*/
+
+
+.indexContainer {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+
+}
+
+.boxIndex {
+  position: relative;
+  background-color: #2a99a8; 
+  outline-color: Black;
+  outline-style: double;
+  border: 1px White;
+}
+
+.paraIndex {
+  font-size: 2rem;
+  color: Black;
+  font-family: 'Indie Flower', cursive;
+  position: relative;
+  top: 50%;
+}
+
+/*---------------------------------*/
+/*OptInBanner, OptOutBanner*/
+
+
+.container {
+  width: 70%;
+  margin: auto;
+  text-align: center;
+}
+
+.containerOutline {
+  margin: auto;
+  text-align: center;
+  background-color: #2a99a8; 
+  outline-color: Black;
+  outline-style: double;
+  border: 1px White;
+}
