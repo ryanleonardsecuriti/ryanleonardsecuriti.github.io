@@ -145,3 +145,39 @@ a:hover {
 .cmp-cookie-info {
   font-family: 'Indie Flower', cursive;
 }
+
+/*---------------------------------*/
+/*Fully Customized GPC*/
+
+/*flyout background*/
+f-gpc-banner {
+  background-color: #2a99a8;
+}
+
+/*"GPC Signal Detected" header background*/
+f-banner-header {
+  background-color: Black;
+}
+
+/*"GPC Signal Detected" Text*/
+.f-gpc-banner .f-banner-header {
+  font-family: 'Lobster', cursive;
+}
+
+/*Flyout banner text*/
+.f-gpc-banner .f-banner-body-text {
+  font-family: 'Indie Flower', cursive;
+  color: White;
+}
+
+/*Do Not Sell or Share & Privacy Policy Link*/
+.f-gpc-banner .f-banner-link a {
+  font-family: 'Indie Flower', cursive;
+  color: white;
+}
+
+/*Hide Banner button*/
+.f-gpc-banner button {
+  font-family: 'Indie Flower', cursive;
+
+}
