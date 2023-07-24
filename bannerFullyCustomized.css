@@ -4,6 +4,7 @@ table, th, td {
   border:1px solid black;
   text-align: center;
   text-decoration: none;
+  border-collapse: collapse;
 }
 
 body {
