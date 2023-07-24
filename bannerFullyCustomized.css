@@ -154,14 +154,12 @@ a:hover {
   background-color: #2a99a8;
 }
 
-/*"GPC Signal Detected" header background*/
-.f-banner-header {
-  background-color: Black;
-}
+/*"GPC Signal Detected" header background and text*/
 
 /*"GPC Signal Detected" Text*/
 .f-gpc-banner .f-banner-header {
   font-family: 'Lobster', cursive;
+  background-color: Black;
 }
 
 /*Flyout banner text*/
