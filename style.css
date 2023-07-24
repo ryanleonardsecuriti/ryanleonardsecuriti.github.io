@@ -1,5 +1,22 @@
 /*All CSS*/
 
+table, th, td {
+  border:1px solid black;
+  text-align: center;
+  text-decoration: none;
+  border-collapse: collapse;
+  padding: 10px;
+}
+
+td {
+  border-left: 3px solid black;
+  border-right: 3px solid black;
+}
+
+th {
+  border: 3px solid black;
+}
+
 
 body {
   background-color: White;
