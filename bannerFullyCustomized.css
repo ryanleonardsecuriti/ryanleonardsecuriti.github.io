@@ -150,12 +150,12 @@ a:hover {
 /*Fully Customized GPC*/
 
 /*flyout background*/
-f-gpc-banner {
+.f-gpc-banner {
   background-color: #2a99a8;
 }
 
 /*"GPC Signal Detected" header background*/
-f-banner-header {
+.f-banner-header {
   background-color: Black;
 }
 
@@ -179,5 +179,5 @@ f-banner-header {
 /*Hide Banner button*/
 .f-gpc-banner button {
   font-family: 'Indie Flower', cursive;
-
+  background-color: black;
 }
