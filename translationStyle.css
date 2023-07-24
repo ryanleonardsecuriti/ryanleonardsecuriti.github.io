@@ -1,15 +1,5 @@
 /*All CSS*/
 
-.column-left {
-  float: left;
-  width: 50%;
-}
-
-.column-right {
-  float: right;
-  width: 50%;
-}
-
 body {
   background-color: White;
 }
@@ -76,7 +66,7 @@ a:hover {
 }
 
 .paraIndex {
-  font-size: 2rem;
+  font-size: 1rem;
   color: Black;
   font-family: 'Indie Flower', cursive;
   position: relative;
