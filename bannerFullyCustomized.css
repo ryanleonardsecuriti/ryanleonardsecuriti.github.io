@@ -5,6 +5,7 @@ table, th, td {
   text-align: center;
   text-decoration: none;
   border-collapse: collapse;
+  padding: 10px;
 }
 
 body {
