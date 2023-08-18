@@ -1,3 +1,13 @@
-p {
+h1 {
+  margin: 30px;
+  font-family: Arial;
+  text-shadow: 2px 0 #000000;
+  font-size: 5rem;
+  color: #2a99a8;
+}
 
+p {
+  font-size: 1rem;
+  color: Black;
+  font-family: Arial;
 }
