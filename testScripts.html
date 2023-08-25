@@ -1,0 +1,47 @@
+<head>
+  <link rel='stylesheet' type='text/css' href='https://cdn-prod.securiti.ai/consent/cookie-consent.css' />
+  <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="container">
+	<h1 style="font-family: Arial; font-size: 4rem">This is an Opt In banner with test scripts</h1>
+	<p><a href="https://ryanleonardsecuriti.github.io">Click Here to select a different banner</a></p>
+	</div>
+	<br>
+	<p style="font-family: Arial">Preference center link below!</p>
+	<p><a onclick="showConsentPreferencesPopup()">Preference Center</p
+	</div>
+
+<script>
+  window.addEventListener('message', function(ev) {
+   if (ev.data.message === 'consent_given' && ev.data.consentStatuses && ev.data.consentStatuses['Analytics & Customization']) {
+   // SECURITI MODE: OPT-OUT POLICY (Cookies drop until user OPTS OUT)
+     // CELEBRUS: Full Data Collection
+        console.log("This is where the celebrus script goes in the IF statement")
+   }
+   else {
+     // SECURITI MODE: OPT-IN POLICY - No cookies drop until user OPTS IN
+    // CELEBRUS: No Data Collection
+        console.log("This is where the celebrus script goes in the ELSE statement")
+   }
+});
+</script>
+    
+	
+<script>
+(function () {
+	var s = document.createElement('script');
+	s.src = 'https://cdn-prod.securiti.ai/consent/cookie-consent-sdk.js';
+	s.setAttribute('data-tenant-uuid', 'f849f6ee-3145-493e-a066-f4277dd87cb8');
+	s.setAttribute('data-domain-uuid', 'fa8faaa2-f491-4724-96bd-ef966cbc7ba9');
+	s.setAttribute('data-backend-url', 'https://app.securiti.ai');
+	s.defer = true;
+	var parent_node = document.head || document.body;
+	parent_node.appendChild(s);
+	s.addEventListener('load', function() { window.initCmp(); });
+})()
+</script>
+</body>
+<footer>
+</footer>
