@@ -23,12 +23,18 @@
    if (ev.data.message === 'consent_given' && ev.data.consentStatuses && ev.data.consentStatuses['Analytics & Customization']) {
    // SECURITI MODE: OPT-OUT POLICY (Cookies drop until user OPTS OUT)
      // CELEBRUS: Full Data Collection
-        console.log("This is where the script goes in the IF statement that looks for banner action on the Analytics & Customization category")
+	console.log("This is where the script goes in the IF statement that looks for banner action on the Analytics & Customization category")
+	console.log(ev.data.message)
+	console.log(ev.data.consentStatuses)
+	console.log("----------------------------------------")
    }
    else {
      // SECURITI MODE: OPT-IN POLICY - No cookies drop until user OPTS IN
     // CELEBRUS: No Data Collection
         console.log("This is where the script goes in the ELSE statement")
+	console.log(ev.data.message)
+	console.log(ev.data.consentStatuses)
+	console.log("----------------------------------------")
    }
 });
 </script>
