@@ -9,6 +9,11 @@
 	<p><a href="https://ryanleonardsecuriti.github.io">Click Here to select a different banner</a></p>
 	</div>
 	<br>
+	<div class="container">
+	<p>This is where we will test adding a custom event listener to enable or disable certain scripts based on banner consent status</p>	
+	</div>
+	<br>
+	<div class="container">
 	<p style="font-family: Arial">Preference center link below!</p>
 	<p><a onclick="showConsentPreferencesPopup()">Preference Center</p
 	</div>
@@ -18,7 +23,7 @@
    if (ev.data.message === 'consent_given' && ev.data.consentStatuses && ev.data.consentStatuses['Analytics & Customization']) {
    // SECURITI MODE: OPT-OUT POLICY (Cookies drop until user OPTS OUT)
      // CELEBRUS: Full Data Collection
-        console.log("This is where the celebrus script goes in the IF statement")
+        console.log("This is where the script goes in the IF statement that looks for banner action on the Analytics & Customization category")
    }
    else {
      // SECURITI MODE: OPT-IN POLICY - No cookies drop until user OPTS IN
