@@ -27,12 +27,13 @@
 	console.log(ev.data.message)
 	console.log(ev.data.consentStatuses)
 	console.log("----------------------------------------")
-   }
-   else if (ev.data.message === 'single_upload_consent_given' && ev.data.message === 'consolidated_consent_given') {
-	console.log("")
+   } else if (ev.data.message === 'single_upload_consent_given') {
+	console.log("single upload")
 	console.log("----------------------------------------")
-   }
-   else {
+   } else if (ev.data.message === 'consolidated_consent_given') {
+	console.log("consolidated upload")
+	console.log("----------------------------------------")
+   } else {
      // SECURITI MODE: OPT-IN POLICY - No cookies drop until user OPTS IN
     // CELEBRUS: No Data Collection
         console.log("This is where the script goes in the ELSE statement")
