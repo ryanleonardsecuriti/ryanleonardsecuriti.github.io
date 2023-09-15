@@ -1,29 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>POST API Call</title>
+    <title>Send HTTP POST Request with CORS Proxy and Custom Headers</title>
 </head>
 <body>
-    <button onclick="sendPOSTRequest()">Send POST Request</button>
+    <button onclick="sendHttpPostRequest()">Send POST Request</button>
+    <textarea id="responseTextArea" rows="10" cols="40"></textarea>
+
 
     <script>
-        function sendPOSTRequest() {
+        function sendHttpPostRequest() {
+            const corsProxyUrl = 'https://cors-anywhere.herokuapp.com/'; // CORS Anywhere proxy URL
+            const apiUrl = 'https://app.securiti.ai/privaci/v1/user/self_service/assessments/start'; // Replace with the target API URL
             const apiKey = '8IyOJZ9lqVMbSa0ZY6eIX1uhQpOoK26bO58sT2mv';
             const apiSecret = 'kJKofD6AVCPy3Wcv62ZxGL9snAu08DyqMGa75yb7';
             const tident = 'f849f6ee-3145-493e-a066-f4277dd87cb8';
 
-            // The API endpoint you want to send the POST request to
-            const apiUrl = 'https://app.securiti.ai/privaci/v1/user/self_service/assessments/start';
+            // Modify the URL to use the CORS proxy
+            const url = corsProxyUrl + apiUrl;
 
-            // The payload you want to send as JSON
+            // Data to be sent in the POST request body (replace with your data)
             const payload = {
             "system": true,
             "template_id": 44,
             "co_owners": [],
             "owner": {
-                "id": 34,
+                "id": 1,
                 "mandatory": false
             },
             "business_process_users": [],
@@ -70,37 +72,53 @@
             }
         };
 
-            // Create a headers object with X-API-KEY, X-API-SECRET, and X-TIDENT headers
-            const headers = new Headers({
-                'X-API-KEY': apiKey,
-                'X-API-SECRET': apiSecret,
-                'X-TIDENT': tident,
-                'Content-Type': 'application/json'
-            });
+            // Get a reference to the textarea
+            const responseTextArea = document.getElementById('responseTextArea');
 
-            // Create the request object
-            const requestOptions = {
+            // Perform a POST request using the fetch API with custom headers
+            fetch(url, {
                 method: 'POST',
-                headers: headers,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-API-KEY': apiKey,
+                    'X-API-SECRET': apiSecret,
+                    'X-TIDENT': tident
+                    // Add any additional headers here if needed
+                },
                 body: JSON.stringify(payload)
-            };
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.text(); // or .json() if the response is JSON
+            })
+            .then(data => {
+                console.log('Response Data:', data);
+                // Extract the "assessment_id" from the response
+                const assessmentId = data.assessment_id;
+                try {
+                    // Parse the response data as JSON
+                    const responseData = JSON.parse(data);
 
-            // Send the POST request
-            fetch(apiUrl, requestOptions)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Response Data:', data);
-                    // Handle the response data as needed
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    // Handle errors here
-                });
+                    // Extract the "assessment_id" from the parsed response
+                    const assessmentId = responseData.data.assessment_id;
+
+                    // Construct the new URL with "assessment_id"
+                    const newUrl = `https://example.com/some-page?assessment_id=${assessmentId}`;
+
+                    // Set the response data and new URL in the textarea
+                    responseTextArea.value = `Response Data:\n${JSON.stringify(responseData, null, 2)}\n\nNew URL:\n${newUrl}`;
+                } catch (error) {
+                    // Handle JSON parsing errors
+                    console.error('JSON Parsing Error:', error);
+                    responseTextArea.value = 'Error parsing JSON response';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Handle errors here
+            });
         }
     </script>
 </body>
