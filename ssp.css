@@ -1,0 +1,46 @@
+/* Reset some default browser styles */
+body, h1, h2, button, textarea {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Apply a background color to the body */
+body {
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+/* Style for page titles */
+h1, h2 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+/* Style for buttons */
+button {
+    background-color: #0074d9; /* Button background color */
+    color: #fff; /* Button text color */
+    padding: 10px 20px; /* Padding around the button text */
+    border: none; /* Remove button border */
+    border-radius: 4px; /* Add rounded corners to the button */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+/* Hover effect for buttons */
+button:hover {
+    background-color: #0056b3; /* Darker background color on hover */
+}
+
+/* Style for textareas */
+textarea {
+    width: 100%; /* Make the textarea full width */
+    padding: 10px; /* Padding inside the textarea */
+    border: 1px solid #ccc; /* Add a light border */
+    border-radius: 4px; /* Add rounded corners */
+    background-color: #fff; /* Background color for the textarea */
+    color: #333; /* Text color */
+    font-family: Arial, sans-serif; /* Text font */
+    resize: vertical; /* Allow vertical resizing of the textarea */
+}
