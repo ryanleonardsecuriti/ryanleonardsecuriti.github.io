@@ -1,5 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POST API Call</title>
+</head>
 <body>
-    <button onclick="sendPOSTRequest()">Initiate SSP PIA Assessment</button>
+    <button onclick="sendPOSTRequest()">Send POST Request</button>
 
     <script>
         function sendPOSTRequest() {
@@ -16,7 +23,7 @@
             "template_id": 44,
             "co_owners": [],
             "owner": {
-                "id": 1,
+                "id": 34,
                 "mandatory": false
             },
             "business_process_users": [],
@@ -59,10 +66,11 @@
                     "ryan.leonard@securiti.ai"
                 ],
                 "message": ""
+    
             }
-        }
+        };
 
-            // Create a headers object with your API key, API secret, and tenant ID
+            // Create a headers object with X-API-KEY, X-API-SECRET, and X-TIDENT headers
             const headers = new Headers({
                 'X-API-KEY': apiKey,
                 'X-API-SECRET': apiSecret,
@@ -96,3 +104,4 @@
         }
     </script>
 </body>
+</html>
