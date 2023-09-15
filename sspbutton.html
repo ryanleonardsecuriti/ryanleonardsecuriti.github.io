@@ -106,7 +106,7 @@
                     const assessmentId = responseData.data.assessment_id;
 
                     // Construct the new URL with "assessment_id"
-                    const newUrl = `https://example.com/some-page?assessment_id=${assessmentId}`;
+                    const newUrl = `https://app.securiti.ai/#/privacy-assessment/${assessmentId}`;
 
                     // Set the response data and new URL in the textarea
                     responseTextArea.value = `Response Data:\n${JSON.stringify(responseData, null, 2)}\n\nNew URL:\n${newUrl}`;
