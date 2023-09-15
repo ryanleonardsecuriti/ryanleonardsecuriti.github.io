@@ -5,7 +5,7 @@
         function sendPOSTRequest() {
             const apiKey = '8IyOJZ9lqVMbSa0ZY6eIX1uhQpOoK26bO58sT2mv';
             const apiSecret = 'kJKofD6AVCPy3Wcv62ZxGL9snAu08DyqMGa75yb7';
-            const tenantId = 'f849f6ee-3145-493e-a066-f4277dd87cb8';
+            const tident = 'f849f6ee-3145-493e-a066-f4277dd87cb8';
 
             // The API endpoint you want to send the POST request to
             const apiUrl = 'https://app.securiti.ai/privaci/v1/user/self_service/assessments/start';
@@ -64,8 +64,10 @@
 
             // Create a headers object with your API key, API secret, and tenant ID
             const headers = new Headers({
-                'Authorization': `Bearer ${apiKey}:${apiSecret}:${tenantId}`,
-                'Content-Type': 'application/json; charset=utf-8'
+                'X-API-KEY': apiKey,
+                'X-API-SECRET': apiSecret,
+                'X-TIDENT': tident,
+                'Content-Type': 'application/json'
             });
 
             // Create the request object
