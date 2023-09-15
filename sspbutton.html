@@ -1,0 +1,96 @@
+<body>
+    <button onclick="sendPOSTRequest()">Initiate SSP PIA Assessment</button>
+
+    <script>
+        function sendPOSTRequest() {
+            const apiKey = '8IyOJZ9lqVMbSa0ZY6eIX1uhQpOoK26bO58sT2mv';
+            const apiSecret = 'kJKofD6AVCPy3Wcv62ZxGL9snAu08DyqMGa75yb7';
+            const tenantId = 'f849f6ee-3145-493e-a066-f4277dd87cb8';
+
+            // The API endpoint you want to send the POST request to
+            const apiUrl = 'https://app.securiti.ai/privaci/v1/user/self_service/assessments/start';
+
+            // The payload you want to send as JSON
+            const payload = {
+    "system": true,
+    "template_id": 44,
+    "co_owners": [],
+    "owner": {
+        "id": 34,
+        "mandatory": false
+    },
+    "business_process_users": [],
+    "collaborators": {
+        "sections": [
+            {
+                "section_number": 1,
+                "owner": "ryan.leonard@securiti.ai"
+            },
+            {
+                "section_number": 2,
+                "owner": "ryan.leonard@securiti.ai"
+            },
+            {
+                "section_number": 3,
+                "owner": "ryan.leonard@securiti.ai"
+            },
+            {
+                "section_number": 4,
+                "owner": "ryan.leonard@securiti.ai"
+            },
+            {
+                "section_number": 5,
+                "owner": "ryan.leonard@securiti.ai"
+            },
+            {
+                "section_number": 6,
+                "owner": "ryan.leonard@securiti.ai"
+            },
+            {
+                "section_number": 7,
+                "owner": "ryan.leonard@securiti.ai"
+            },
+            {
+                "section_number": 8,
+                "owner": "ryan.leonard@securiti.ai"
+            }
+        ],
+        "emails": [
+            "ryan.leonard@securiti.ai"
+        ],
+        "message": ""
+    }
+}
+
+            // Create a headers object with your API key, API secret, and tenant ID
+            const headers = new Headers({
+                'Authorization': `Bearer ${apiKey}:${apiSecret}:${tenantId}`,
+                'Content-Type': 'application/json'
+            });
+
+            // Create the request object
+            const requestOptions = {
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify(payload)
+            };
+
+            // Send the POST request
+            fetch(apiUrl, requestOptions)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Response Data:', data);
+                    // Handle the response data as needed
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Handle errors here
+                });
+        }
+    </script>
+</body>
