@@ -30,55 +30,53 @@
 
             // Data to be sent in the POST request body (replace with your data)
             const payload = {
-            "system": true,
-            "template_id": 44,
-            "co_owners": [],
-            "owner": {
-                "id": 1,
-                "mandatory": false
+            {
+    "template_id": 44,
+    "system": true,
+    "owner": {
+        "id": 1
+    },
+    "co_owners": null,
+    "collaborators": {
+        "sections": [
+            {
+                "section_number": 1,
+                "owner": "ryan.leonard@securiti.ai"
             },
-            "business_process_users": [],
-            "collaborators": {
-                "sections": [
-                    {
-                        "section_number": 1,
-                        "owner": "ryan.leonard@securiti.ai"
-                    },
-                    {
-                        "section_number": 2,
-                        "owner": "ryan.leonard@securiti.ai"
-                    },
-                    {
-                        "section_number": 3,
-                        "owner": "ryan.leonard@securiti.ai"
-                    },
-                    {
-                        "section_number": 4,
-                        "owner": "ryan.leonard@securiti.ai"
-                    },
-                    {
-                        "section_number": 5,
-                        "owner": "ryan.leonard@securiti.ai"
-                    },
-                    {
-                        "section_number": 6,
-                        "owner": "ryan.leonard@securiti.ai"
-                    },
-                    {
-                        "section_number": 7,
-                        "owner": "ryan.leonard@securiti.ai"
-                    },
-                    {
-                        "section_number": 8,
-                        "owner": "ryan.leonard@securiti.ai"
-                    }
-                ],
-                "emails": [
-                    "ryan.leonard@securiti.ai"
-                ],
-                "message": ""
-    
+            {
+                "section_number": 2,
+                "owner": "ryan.leonard@securiti.ai"
+            },
+            {
+                "section_number": 3,
+                "owner": "ryan.leonard@securiti.ai"
+            },
+            {
+                "section_number": 4,
+                "owner": "ryan.leonard@securiti.ai"
+            },
+            {
+                "section_number": 5,
+                "owner": "ryan.leonard@securiti.ai"
+            },
+            {
+                "section_number": 6,
+                "owner": "ryan.leonard@securiti.ai"
+            },
+            {
+                "section_number": 7,
+                "owner": "ryan.leonard@securiti.ai"
+            },
+            {
+                "section_number": 8,
+                "owner": "ryan.leonard@securiti.ai"
             }
+        ],
+        "email": [
+            "ryan.leonard@securiti.ai"
+        ]
+    }
+}
         };
 
             // Get a reference to the textarea
