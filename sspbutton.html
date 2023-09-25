@@ -30,55 +30,54 @@
 
             // Data to be sent in the POST request body (replace with your data)
             const payload = {
-            {
-                "system": true,
-                "template_id": 44,
-                "co_owners": [],
-                "owner": {
-                    "id": 1,
-                    "mandatory": false
-                },
-                "business_process_users": [],
-                "collaborators": {
-                    "sections": [
-                        {
-                            "section_number": 1,
-                            "owner": "ryan.leonard@securiti.ai"
-                        },
-                        {
-                            "section_number": 2,
-                            "owner": "ryan.leonard@securiti.ai"
-                        },
-                        {
-                            "section_number": 3,
-                            "owner": "ryan.leonard@securiti.ai"
-                        },
-                        {
-                            "section_number": 4,
-                            "owner": "ryan.leonard@securiti.ai"
-                        },
-                        {
-                            "section_number": 5,
-                            "owner": "ryan.leonard@securiti.ai"
-                        },
-                        {
-                            "section_number": 6,
-                            "owner": "ryan.leonard@securiti.ai"
-                        },
-                        {
-                            "section_number": 7,
-                            "owner": "ryan.leonard@securiti.ai"
-                        },
-                        {
-                            "section_number": 8,
-                            "owner": "ryan.leonard@securiti.ai"
-                        }
-                    ],
-                    "emails": [
-                        "ryan.leonard@securiti.ai"
-                    ],
-                    "message": ""
-                }
+            "system": true,
+            "template_id": 44,
+            "co_owners": [],
+            "owner": {
+                "id": 1,
+                "mandatory": false
+            },
+            "business_process_users": [],
+            "collaborators": {
+                "sections": [
+                    {
+                        "section_number": 1,
+                        "owner": "ryan.leonard@securiti.ai"
+                    },
+                    {
+                        "section_number": 2,
+                        "owner": "ryan.leonard@securiti.ai"
+                    },
+                    {
+                        "section_number": 3,
+                        "owner": "ryan.leonard@securiti.ai"
+                    },
+                    {
+                        "section_number": 4,
+                        "owner": "ryan.leonard@securiti.ai"
+                    },
+                    {
+                        "section_number": 5,
+                        "owner": "ryan.leonard@securiti.ai"
+                    },
+                    {
+                        "section_number": 6,
+                        "owner": "ryan.leonard@securiti.ai"
+                    },
+                    {
+                        "section_number": 7,
+                        "owner": "ryan.leonard@securiti.ai"
+                    },
+                    {
+                        "section_number": 8,
+                        "owner": "ryan.leonard@securiti.ai"
+                    }
+                ],
+                "emails": [
+                    "ryan.leonard@securiti.ai"
+                ],
+                "message": ""
+    
             }
         };
 
@@ -115,7 +114,7 @@
                     const assessmentId = responseData.data.assessment_id;
 
                     // Construct the new URL with "assessment_id"
-                    const newUrl = `https://app.securiti.ai/#/privacy-assessment/${assessmentId}`;
+                    const newUrl = `https://example.com/some-page?assessment_id=${assessmentId}`;
 
                     // Set the response data and new URL in the textarea
                     responseTextArea.value = `Response Data:\n${JSON.stringify(responseData, null, 2)}\n\nNew URL:\n${newUrl}`;
