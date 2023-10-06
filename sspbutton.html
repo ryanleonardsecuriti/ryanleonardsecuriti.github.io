@@ -118,6 +118,7 @@
 
                     // Set the response data and new URL in the textarea
                     responseTextArea.value = `Response Data:\n${JSON.stringify(responseData, null, 2)}\n\nNew URL:\n${newUrl}`;
+                    window.location.href = "google.com";
                 } catch (error) {
                     // Handle JSON parsing errors
                     console.error('JSON Parsing Error:', error);
