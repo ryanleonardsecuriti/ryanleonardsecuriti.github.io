@@ -1,0 +1,24 @@
+/*All CSS*/
+
+body {
+  background-color: White;
+}
+
+/*---------------------------------*/
+/*OptInBanner, OptOutBanner*/
+
+
+.container {
+  width: 70%;
+  margin: auto;
+  text-align: center;
+}
+
+.containerOutline {
+  margin: auto;
+  text-align: center;
+  background-color: #2a99a8; 
+  outline-color: Black;
+  outline-style: double;
+  border: 1px White;
+}
