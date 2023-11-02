@@ -1,0 +1,21 @@
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<script src='https://cdn-prod.securiti.ai/consent/form-consent-sdk.js'></script>
+<script>
+window.addEventListener('load',
+    FormConsentSDK.initialize({
+        codeGenMetadata:{"formPropertyId":"1","formSelector":"[name*=\"demo-form-name\"]","subjectIdentifiers":[{"name":"email","selector":"email","isPrimary":true},{"name":"firstname","selector":"fname","isPrimary":false}],"consentIdentifiers":[{"type":"checkbox","name":"Do Not Sell My Information","selector":"donotsell","propertyId":9290,"consentValue":"unchecked"}],"consentTrigger":{"action":"submit","selector":""}},
+        url: 'https://app.securiti.ai/privaci/v1/',
+        authToken:'68ee1bd6-b394-4499-b00f-210e96cc359b',
+        orgId:'37',
+        onConsentSuccess: null,
+        onConsentFailure: null
+    })
+)
+</script>
+</body>
+<footer>
+</footer>
