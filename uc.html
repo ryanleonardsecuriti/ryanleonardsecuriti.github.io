@@ -4,19 +4,18 @@
 </head>
 <body>
 
-<script src='https://cdn-prod.securiti.ai/consent/form-consent-sdk.js'></script>
-<script>
-window.addEventListener('load',
+
+                                <script src='https://cdn-prod.securiti.ai/consent/form-consent-sdk.js'></script>
+                                <script>window.addEventListener('load',
     FormConsentSDK.initialize({
-        codeGenMetadata:{"formPropertyId":"30","formSelector":"[name*=\"privaci_preferences\"]","subjectIdentifiers":[{"name":"email","selector":"[name = \"email\"]","isPrimary":true}],"consentIdentifiers":[{"type":"checkbox","name":"daily","selector":"[name = \"daily\"]","propertyId":6076,"consentValue":"checked"},{"type":"checkbox","name":"weekly","selector":"[name = \"weekly\"]","propertyId":6077,"consentValue":"checked"},{"type":"checkbox","name":"monthly","selector":"[name = \"monthly\"]","propertyId":6078,"consentValue":"checked"}],"consentTrigger":{"action":"click","selector":"[type=\"submit\"]"}},
+        codeGenMetadata:{"formPropertyId":"1","formSelector":"[class*=\"dist__BaseForm-1-sc-630f0a6f-30 dist__StyledSquaredForm-1-sc-630f0a6f-38 hwjhDI kklAbF style__StyledInputWithAction-sc-2a5839c1-9 juSsIh\"]","subjectIdentifiers":[{"name":"email","selector":"[name = \"email\"]","isPrimary":true}],"consentIdentifiers":[{"type":"NoUIElement","name":"DefaultElementId","selector":"DefaultElementSelector","propertyId":9291,"consentValue":"DefaultConsentValue"}],"consentTrigger":{"action":"click","selector":"[class = \"chakra-button css-u5fi7s\"]"}},
         url: 'https://app.securiti.ai/privaci/v1/',
-        authToken:'6f1a45b9-4852-4960-9056-de91de6edb8a',
-        orgId:'1',
+        authToken:'68ee1bd6-b394-4499-b00f-210e96cc359b',
+        orgId:'37',
         onConsentSuccess: null,
         onConsentFailure: null
     })
-)
-</script>
+)</script>
 </body>
 <footer>
 </footer>
