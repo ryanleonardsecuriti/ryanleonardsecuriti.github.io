@@ -4,18 +4,16 @@
 </head>
 <body>
 
+  <form id="formID">
+  <label for="fname">Email:</label><br>
+  <input type="text" id="email" name="email" value="johndoe@email.com"><br>
+  <label for="fname">First name:</label><br>
+  <input type="text" id="fname" name="fname" value="John"><br>
+  <label for="lname">Last name:</label><br>
+  <input type="text" id="lname" name="lname" value="Doe"><br><br>
+  <input type="submit" value="Submit">
+</form> 
 
-                                <script src='https://cdn-prod.securiti.ai/consent/form-consent-sdk.js'></script>
-                                <script>window.addEventListener('load',
-    FormConsentSDK.initialize({
-        codeGenMetadata:{"formPropertyId":"1","formSelector":"[class*=\"dist__BaseForm-1-sc-630f0a6f-30 dist__StyledSquaredForm-1-sc-630f0a6f-38 hwjhDI kklAbF style__StyledInputWithAction-sc-2a5839c1-9 juSsIh\"]","subjectIdentifiers":[{"name":"email","selector":"[name = \"email\"]","isPrimary":true}],"consentIdentifiers":[{"type":"NoUIElement","name":"DefaultElementId","selector":"DefaultElementSelector","propertyId":9291,"consentValue":"DefaultConsentValue"}],"consentTrigger":{"action":"click","selector":"[class = \"chakra-button css-u5fi7s\"]"}},
-        url: 'https://app.securiti.ai/privaci/v1/',
-        authToken:'68ee1bd6-b394-4499-b00f-210e96cc359b',
-        orgId:'37',
-        onConsentSuccess: null,
-        onConsentFailure: null
-    })
-)</script>
 </body>
 <footer>
 </footer>
