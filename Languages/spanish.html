@@ -7,46 +7,39 @@
 	<div class="container">
 	<h1 style="font-family: Arial; font-size: 4rem">This is the Opt in banner machine translated to Spanish</h1>
 	<p><a href="https://ryanleonardsecuriti.github.io">Click Here to select a different banner</a></p>
-    <!-- Add a button with the id 'changeLanguageButton' -->
-    <button id="changeLanguageButton">Change Language to English</button>
 	</div>
 
 <script type="text/javascript" 
 src="https://cdn-prod.securiti.ai/consent/sdk-stub.js"></script>
-<!-- After adding this script, call setConsentBannerParams({uuid: <unique id> }) to set a unique ID for a customer. -->
+<!-- After adding this script, call setConsentBannerParams({uuid: <unique id> }) to set unique ID for a customer. -->
 <script>
 (function () {
-    var s = document.createElement('script');
-    s.src = 'https://cdn-prod.securiti.ai/consent/cookie-consent-sdk.js';
-    s.setAttribute('data-tenant-uuid', 'f849f6ee-3145-493e-a066-f4277dd87cb8');
-    s.setAttribute('data-domain-uuid', '8bdb6a21-5691-411e-a1d0-96dd0ab85958');
-    s.setAttribute('data-backend-url', 'https://app.securiti.ai');
-    var parent_node = document.head || document.body;
-    s.defer = true;
-    parent_node.appendChild(s);
+	var s = document.createElement('script');
+	s.src = 'https://cdn-prod.securiti.ai/consent/cookie-consent-sdk.js';
+	s.setAttribute('data-tenant-uuid', 'f849f6ee-3145-493e-a066-f4277dd87cb8');
+	s.setAttribute('data-domain-uuid', '8bdb6a21-5691-411e-a1d0-96dd0ab85958');
+	s.setAttribute('data-backend-url', 'https://app.securiti.ai');
+	var parent_node = document.head || document.body;
+        s.defer = true;
+	parent_node.appendChild(s);
+      	s.addEventListener('load', function() {
+           window.initCmp();
 
-    function setBannerLanguage(language) {
-        window.setConsentBannerParams({
-            overrideBannerLanguage: {
-                'https://ryanleonardsecuriti.github.io/Languages/spanish': language
-            }
-        });
-    }
-
-    s.addEventListener('load', function () {
-        window.initCmp();
-
-        // Get the button element by id
-        var button = document.getElementById('changeLanguageButton');
-
+	var button = document.getElementById('changeLanguageButton');
+	language = 'es';
         if (button) {
             button.addEventListener('click', function () {
                 // Change language to 'en' on button click
-                setBannerLanguage('es');
+                language = 'en');
             });
-        }
-    });
-})();
+        }	
+		
+           window.setConsentBannerParams(
+		{overrideBannerLanguage: {
+        'https://ryanleonardsecuriti.github.io/Languages/spanish': language	}
+	})
+       });
+})()
 </script>
 </body>
 <footer>
