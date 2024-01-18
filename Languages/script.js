@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(data => {
                 // Update the content with the translated text
-                translatedContent.textContent = data.translations;
+                translatedContent.textContent = data.translations.default;
             })
             .catch(error => {
                 console.error('Error fetching or applying translation:', error);
