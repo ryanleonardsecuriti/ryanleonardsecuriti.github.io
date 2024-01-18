@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <link rel='stylesheet' type='text/css' href='https://cdn-prod.securiti.ai/consent/cookie-consent.css' />
   <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster" rel="stylesheet">
@@ -28,6 +28,10 @@ src="https://cdn-prod.securiti.ai/consent/sdk-stub.js"></script>
     parent_node.appendChild(s);
 
     function setBannerLanguage(language) {
+        // Change HTML lang attribute
+        document.documentElement.lang = language;
+
+        // Change banner language based on HTML lang
         window.setConsentBannerParams({
             overrideBannerLanguage: {
                 'https://ryanleonardsecuriti.github.io/Languages/spanish': language
