@@ -1,75 +1,36 @@
-<!DOCTYPE html>
-<html lang="es">
 <head>
-    <link rel='stylesheet' type='text/css' href='https://cdn-prod.securiti.ai/consent/cookie-consent.css' />
-    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster" rel="stylesheet">
-    <link rel="stylesheet" href="languageStyle.css">
+  <link rel='stylesheet' type='text/css' href='https://cdn-prod.securiti.ai/consent/cookie-consent.css' />
+  <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster" rel="stylesheet">
+  <link rel="stylesheet" href="languageStyle.css">
 </head>
 <body>
-    <div class="container">
-        <h1 style="font-family: Arial; font-size: 4rem">This is the Opt in banner machine translated to Spanish</h1>
-        <p><a href="https://ryanleonardsecuriti.github.io">Click Here to select a different banner</a></p>
-    </div>
+	<div class="container">
+	<h1 style="font-family: Arial; font-size: 4rem">This is the Opt in banner machine translated to Spanish</h1>
+	<p><a href="https://ryanleonardsecuriti.github.io">Click Here to select a different banner</a></p>
+	</div>
 
-    <button id="translateButton">Translate to English</button>
-
-    <script type="text/javascript" src="https://cdn-prod.securiti.ai/consent/sdk-stub.js"></script>
-    <!-- After adding this script, call setConsentBannerParams({uuid: <unique id> }) to set a unique ID for a customer. -->
-    <script>
-        (function () {
-            var s = document.createElement('script');
-            s.src = 'https://cdn-prod.securiti.ai/consent/cookie-consent-sdk.js';
-            s.setAttribute('data-tenant-uuid', 'f849f6ee-3145-493e-a066-f4277dd87cb8');
-            s.setAttribute('data-domain-uuid', '8bdb6a21-5691-411e-a1d0-96dd0ab85958');
-            s.setAttribute('data-backend-url', 'https://app.securiti.ai');
-            var parent_node = document.head || document.body;
-            s.defer = true;
-            parent_node.appendChild(s);
-            s.addEventListener('load', function () {
-                window.initCmp();
-                window.setConsentBannerParams({
-                    overrideBannerLanguage: {
-                        'https://ryanleonardsecuriti.github.io/Languages/spanish': 'es'
-                    }
-                });
-            });
-        })();
-
-        // Add click event listener to the button
-        document.getElementById('translateButton').addEventListener('click', function() {
-            // Trigger the fetchEnglishTranslations function on button click
-            fetchEnglishTranslations();
-        });
-
-        function fetchEnglishTranslations() {
-            // Set the URL for the English translation JSON file
-            var englishTranslationURL = "https://cdn-prod.securiti.ai/consent/cookie_banner/f849f6ee-3145-493e-a066-f4277dd87cb8/8bdb6a21-5691-411e-a1d0-96dd0ab85958/en.json";
-
-            // Make an HTTP request to the specified URL
-            fetch(englishTranslationURL)
-                .then(response => {
-                    // Check if the response status is OK (status code 200)
-                    if (response.ok) {
-                        return response.json();
-                    } else {
-                        throw new Error(`Failed to fetch translation (${response.status} ${response.statusText})`);
-                    }
-                })
-                .then(data => {
-                    // Update the content with the English translations
-                    applyEnglishTranslations(data.translations);
-                })
-                .catch(error => {
-                    console.error('Error fetching or applying English translations:', error);
-                });
-        }
-
-        function applyEnglishTranslations(englishTranslations) {
-            // Update the content with the English translations
-            document.querySelector('h1').textContent = englishTranslations.bannerText;
-            document.querySelector('p a').textContent = englishTranslations.linkText;
-        }
-    </script>
+<script type="text/javascript" 
+src="https://cdn-prod.securiti.ai/consent/sdk-stub.js"></script>
+<!-- After adding this script, call setConsentBannerParams({uuid: <unique id> }) to set unique ID for a customer. -->
+<script>
+(function () {
+	var s = document.createElement('script');
+	s.src = 'https://cdn-prod.securiti.ai/consent/cookie-consent-sdk.js';
+	s.setAttribute('data-tenant-uuid', 'f849f6ee-3145-493e-a066-f4277dd87cb8');
+	s.setAttribute('data-domain-uuid', '8bdb6a21-5691-411e-a1d0-96dd0ab85958');
+	s.setAttribute('data-backend-url', 'https://app.securiti.ai');
+	var parent_node = document.head || document.body;
+        s.defer = true;
+	parent_node.appendChild(s);
+      	s.addEventListener('load', function() {
+           window.initCmp();
+           window.setConsentBannerParams(
+		{overrideBannerLanguage: {
+        'https://ryanleonardsecuriti.github.io/Languages/romanian': 'es'	}
+	})
+       });
+})()
+</script>
 </body>
 <footer>
 </footer>
