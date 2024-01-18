@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const translatedContent = document.getElementById('translatedContent');
 
     // Set the URL for the translation JSON file
-    const translationURL = "https://cdn-prod.securiti.ai/consent/cookie_banner/f849f6ee-3145-493e-a066-f4277dd87cb8/8bdb6a21-5691-411e-a1d0-96dd0ab85958/it.json";
+    const translationURL = "https://example.com/path/to/translation.json";
 
     // Function to fetch and apply translation
     function applyTranslation() {
