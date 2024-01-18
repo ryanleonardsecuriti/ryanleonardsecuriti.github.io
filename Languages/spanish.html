@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="es">
 <head>
   <link rel='stylesheet' type='text/css' href='https://cdn-prod.securiti.ai/consent/cookie-consent.css' />
   <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster" rel="stylesheet">
@@ -28,14 +26,9 @@ src="https://cdn-prod.securiti.ai/consent/sdk-stub.js"></script>
     parent_node.appendChild(s);
 
     function setBannerLanguage(language) {
-        // Change HTML lang attribute
-        language = 'es';
-	    document.documentElement.lang = language;
-
-        // Change banner language based on HTML lang
         window.setConsentBannerParams({
             overrideBannerLanguage: {
-                'https://ryanleonardsecuriti.github.io/Languages/spanish': language
+                'https://ryanleonardsecuriti.github.io/Languages/spanish': '\'' + language + '\''
             }
         });
     }
@@ -49,7 +42,7 @@ src="https://cdn-prod.securiti.ai/consent/sdk-stub.js"></script>
         if (button) {
             button.addEventListener('click', function () {
                 // Change language to 'en' on button click
-                setBannerLanguage("'en'");
+                setBannerLanguage('es');
             });
         }
     });
@@ -58,4 +51,3 @@ src="https://cdn-prod.securiti.ai/consent/sdk-stub.js"></script>
 </body>
 <footer>
 </footer>
-</html>
