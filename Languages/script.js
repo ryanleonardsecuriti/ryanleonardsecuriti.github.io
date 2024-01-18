@@ -5,22 +5,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // Get the button
     const languageButton = document.getElementById('languageButton');
 
-    // Set initial language and class
-    let currentLanguage = 'en';
-    let currentClass = 'original-ltr';
+    // Set the URL for the language switch
+    const languageSwitchURL = "https://cdn-prod.securiti.ai/consent/cookie_banner/f849f6ee-3145-493e-a066-f4277dd87cb8/8bdb6a21-5691-411e-a1d0-96dd0ab85958/it.json";
 
     // Add click event listener to the button
     languageButton.addEventListener('click', function() {
-        // Toggle between 'en' and 'es'
-        currentLanguage = (currentLanguage === 'en') ? 'es' : 'en';
-
-        // Toggle class between 'original-ltr' and 'translated-ltr'
-        currentClass = (currentClass === 'original-ltr') ? 'translated-ltr' : 'original-ltr';
-
-        // Change the lang attribute of the HTML tag
-        htmlTag.setAttribute('lang', currentLanguage);
-
-        // Update the class of the HTML tag
-        htmlTag.setAttribute('class', currentClass);
+        // Make an HTTP request to the specified URL
+        fetch(languageSwitchURL)
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response data as needed
+                console.log(data);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
     });
 });
