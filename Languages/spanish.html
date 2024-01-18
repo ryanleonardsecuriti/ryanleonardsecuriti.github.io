@@ -29,7 +29,8 @@ src="https://cdn-prod.securiti.ai/consent/sdk-stub.js"></script>
 
     function setBannerLanguage(language) {
         // Change HTML lang attribute
-        document.documentElement.lang = language;
+        language = 'es';
+	    document.documentElement.lang = language;
 
         // Change banner language based on HTML lang
         window.setConsentBannerParams({
@@ -48,7 +49,7 @@ src="https://cdn-prod.securiti.ai/consent/sdk-stub.js"></script>
         if (button) {
             button.addEventListener('click', function () {
                 // Change language to 'en' on button click
-                setBannerLanguage('en');
+                setBannerLanguage("'en'");
             });
         }
     });
