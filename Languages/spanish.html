@@ -13,7 +13,7 @@
 	<button id="changeLanguageButton">Toggle Language to English</button>
 
 	<script type="text/javascript" src="https://cdn-prod.securiti.ai/consent/sdk-stub.js"></script>
-	<!-- After adding this script, call setConsentBannerParams({uuid: <unique id> }) to set unique ID for a customer. -->
+	<!-- After adding this script, call setConsentBannerParams({uuid: <unique id> }) to set a unique ID for a customer. -->
 	<script>
 	(function () {
 		var s = document.createElement('script');
@@ -33,6 +33,16 @@
 			});
 		}
 
+		function fetchLanguageJson(url, language) {
+			fetch(url)
+				.then(response => response.json())
+				.then(data => {
+					// Use the fetched data or update the banner language as needed
+					setBannerLanguage(language);
+				})
+				.catch(error => console.error('Error fetching language JSON:', error));
+		}
+
 		s.addEventListener('load', function () {
 			window.initCmp();
 
@@ -44,7 +54,9 @@
 				button.addEventListener('click', function () {
 					// Toggle language between 'es' and 'en' on button click
 					currentLanguage = (currentLanguage === 'es') ? 'en' : 'es';
-					setBannerLanguage(currentLanguage);
+					// Fetch the language JSON for the selected language
+					var languageJsonUrl = 'https://cdn-prod.securiti.ai/consent/cookie_banner/f849f6ee-3145-493e-a066-f4277dd87cb8/8bdb6a21-5691-411e-a1d0-96dd0ab85958/' + currentLanguage + '.json';
+					fetchLanguageJson(languageJsonUrl, currentLanguage);
 				});
 			}
 
