@@ -1,9 +1,19 @@
-<html><head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Display a fixed-sized test ad.">
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2022 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Display a fixed-sized test ad." />
     <title>Display a test ad</title>
-    <script async="" src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+    <script
+      async
+      src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+    ></script>
     <script>
       window.googletag = window.googletag || { cmd: [] };
 
@@ -20,28 +30,49 @@
         // Enable the PubAdsService.
         googletag.enableServices();
       });
+    </script>
+    <style></style>
+  </head>
+  <body>
+    <div id="banner-ad" style="width: 300px; height: 250px"></div>
+    <script>
       googletag.cmd.push(() => {
         // Request and render an ad for the "banner-ad" slot.
         googletag.display("banner-ad");
       });
     </script>
-  
-<!-- After adding this script, call setConsentBannerParams({uuid: <unique id> }) to set unique ID for a customer.  -->
-<script>
-(function () {
-	var s = document.createElement('script');
-	s.src = 'https://cdn-prod.securiti.ai/consent/cookie-consent-sdk-loader.js';
-	s.setAttribute('data-tenant-uuid', 'f849f6ee-3145-493e-a066-f4277dd87cb8');
-	s.setAttribute('data-domain-uuid', 'fa8faaa2-f491-4724-96bd-ef966cbc7ba9');
-	s.setAttribute('data-backend-url', 'https://app.securiti.ai');
-	s.setAttribute('data-skip-css', 'false');
-	s.defer = true;
-	var parent_node = document.head || document.body;
-	parent_node.appendChild(s);
-})()
-</script>
-</head>
-    <body>
-        
-    </body>
+    <script type="text/javascript">
+        if (
+            "25ce75e1-0941-4c49-abf4-bdbf994e59ba" &&
+            "25a6febe-211c-4b65-9f9c-90c7a33c4327"
+        ) {
+            (function () {
+            var cookieConsentSdk = document.createElement("script");
+            cookieConsentSdk.src =
+                "https://cdn-prod.securiti.ai/consent/cookie-consent-sdk-loader.js";
+            cookieConsentSdk.setAttribute(
+                "data-tenant-uuid",
+                "25ce75e1-0941-4c49-abf4-bdbf994e59ba"
+            );
+            cookieConsentSdk.setAttribute(
+                "data-domain-uuid",
+                "25a6febe-211c-4b65-9f9c-90c7a33c4327"
+            );
+            cookieConsentSdk.setAttribute(
+                "data-backend-url",
+                "https://app.securiti.ai"
+            );
+            cookieConsentSdk.setAttribute("data-skip-css", "false");
+
+            if (["local", "dev", "qa", "uat"].includes(window.environment)) {
+                cookieConsentSdk.setAttribute("data-securiti-staging-mode", "true");
+            }
+
+            cookieConsentSdk.defer = true;
+            var parent_node = document.head;
+            parent_node.appendChild(cookieConsentSdk);
+            })();
+        }
+    </script>
+  </body>
 </html>
