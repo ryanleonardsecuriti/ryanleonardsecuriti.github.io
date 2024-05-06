@@ -41,4 +41,22 @@
 				<p class="paraIndex" style="font-family: Arial"><a href="https://ryanleonardsecuriti.github.io/Languages/vietnamese">Vietnamese</a></p>	
 	
 		</div>	
+	<script type="text/javascript" 
+src="https://cdn-prod.securiti.ai/consent/sdk-stub.js"></script>
+<!-- After adding this script, call setConsentBannerParams({uuid: <unique id> }) to set unique ID for a customer. -->
+<script>
+(function () {
+	var s = document.createElement('script');
+	s.src = 'https://cdn-prod.securiti.ai/consent/cookie-consent-sdk.js';
+	s.setAttribute('data-tenant-uuid', 'f849f6ee-3145-493e-a066-f4277dd87cb8');
+	s.setAttribute('data-domain-uuid', '8bdb6a21-5691-411e-a1d0-96dd0ab85958');
+	s.setAttribute('data-backend-url', 'https://app.securiti.ai');
+	var parent_node = document.head || document.body;
+        s.defer = true;
+	parent_node.appendChild(s);
+      	s.addEventListener('load', function() {
+           window.initCmp();
+       });
+})()
+</script>
 </body>
