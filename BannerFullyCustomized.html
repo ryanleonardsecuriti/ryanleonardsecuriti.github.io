@@ -78,21 +78,18 @@
 (function () {
 	var s = document.createElement('script');
 	s.src = 'https://cdn-prod.securiti.ai/consent/cookie-consent-sdk.js';
-	s.setAttribute('data-tenant-uuid', 'f849f6ee-3145-493e-a066-f4277dd87cb8');
-	s.setAttribute('data-domain-uuid', 'fa8faaa2-f491-4724-96bd-ef966cbc7ba9');
+	s.setAttribute('data-tenant-uuid', 'domainID');
+	s.setAttribute('data-domain-uuid', 'tenantID');
 	s.setAttribute('data-backend-url', 'https://app.securiti.ai');
 	s.defer = true;
+
+	s.addEventListener('load', function() {
+window.setConsentBannerParams({uuid: 123 })
+    });
 	var parent_node = document.head || document.body;
 	parent_node.appendChild(s);
 	s.addEventListener('load', function() { window.initCmp(); });
 })()
-
-if (window.location.href.indexOf('https://ryanleonardsecuriti.github.io/BannerFullyCustomized') > -1) {
-    var style = document.createElement('style');
-    style.innerHTML = '.cc-window.cc-banner { top: 0; }';
-    document.head.appendChild(style);
-}
-
 </script>
 </div>
 </body>
