@@ -87,11 +87,9 @@
 	s.addEventListener('load', function() { window.initCmp(); });
 })()
 
-	// Check if the current page URL contains 'mycompany.com'
 if (window.location.href.indexOf('https://ryanleonardsecuriti.github.io/BannerFullyCustomized') > -1) {
-    // Override the .cc-window.cc-banner CSS style
     var style = document.createElement('style');
-    style.innerHTML = '.cc-window.cc-banner { width: 50%; }';
+    style.innerHTML = '.cc-window.cc-banner { top: 0; }';
     document.head.appendChild(style);
 }
 
