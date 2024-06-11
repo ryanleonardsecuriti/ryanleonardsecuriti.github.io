@@ -90,6 +90,11 @@ window.setConsentBannerParams({uuid: 123 })
 	parent_node.appendChild(s);
 	s.addEventListener('load', function() { window.initCmp(); });
 })()
+
+    var style = document.createElement('style');
+    style.innerHTML = '.f-gpc-flyout { width: 50%; }';
+    document.head.appendChild(style);
+
 </script>
 </div>
 </body>
