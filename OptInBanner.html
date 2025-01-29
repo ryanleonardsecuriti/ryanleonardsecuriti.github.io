@@ -54,6 +54,42 @@ After adding this script, call setConsentBannerParams({uuid: <unique id> }) to s
 	parent_node.appendChild(s);
 })()
 </script>
+
+
+  <script>
+  function setTestCookie() {
+    document.cookie = "testCookie=HelloWorld; path=/; max-age=3600; secure";
+    console.log("Cookie has been set!");
+  }
+
+  function getTestCookie() {
+    let cookieValue = getCookie("testCookie");
+    if (cookieValue) {
+      console.log("Cookie value: " + cookieValue);
+    } else {
+      console.log("Cookie not found");
+    }
+  }
+
+
+  function getCookie(name) {
+    let cookieArr = document.cookie.split("; ");
+    for (let i = 0; i < cookieArr.length; i++) {
+      let cookiePair = cookieArr[i].split("=");
+      if (name === cookiePair[0]) {
+        return cookiePair[1];
+      }
+    }
+    return null;
+  }
+
+
+  window.onload = function() {
+    setTestCookie();
+    getTestCookie();
+  }
+  </script>	
+	
 </body>
 <footer>
 </footer>
