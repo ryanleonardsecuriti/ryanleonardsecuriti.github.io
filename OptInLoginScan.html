@@ -28,37 +28,8 @@
 <script type="text/javascript" src="https://cdn-prod.securiti.ai/consent/auto_blocking/f849f6ee-3145-493e-a066-f4277dd87cb8/50d200ff-1a03-40bb-b669-2d29a4b9e239.js"></script>
 
 
-  <script type="text/javascript">
-  function setTestCookie() {
-    document.cookie = "testCookie=HelloWorld; path=/; max-age=3600; secure";
-    console.log("Cookie has been set!");
-  }
-
-  function getTestCookie() {
-    let cookieValue = getCookie("testCookie");
-    if (cookieValue) {
-      console.log("Cookie value: " + cookieValue);
-    } else {
-      console.log("Cookie not found");
-    }
-  }
-
-
-  function getCookie(name) {
-    let cookieArr = document.cookie.split("; ");
-    for (let i = 0; i < cookieArr.length; i++) {
-      let cookiePair = cookieArr[i].split("=");
-      if (name === cookiePair[0]) {
-        return cookiePair[1];
-      }
-    }
-    return null;
-  }
-
-
-    setTestCookie();
-    getTestCookie();
-  </script>	
+<!-- Link to external cookie.js -->
+  <script type="text/javascript" src="cookie.js"></script>
 	
 </body>
 <footer>
