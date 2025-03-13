@@ -46,18 +46,8 @@ SecuritiDataLayer.push([
     (sdk, consent) => {
         // Use the consent object as shown below
         
-          {
-            "category": {
-                "Advertising": "denied",
-                "Analytics & Customization": "denied",
-                "Essential": "granted",
-                "Performance & Functionality": "denied",
-                "Social Networking": "denied"
-            }
-          }
         
-        console.log('category');
-	const categories = configSdk.getCategories();
+        const categories = configSdk.getCategories();
         console.log('Cookie Categories:', categories);
 	    
     }
