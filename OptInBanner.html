@@ -53,13 +53,15 @@ SecuritiDataLayer.push([
         const categories = configSdk.getCategories();
         console.log('Cookie Categories:', categories);
 
-        // Check for 'Advertising' in base_category
-        if (categories && Array.isArray(categories)) { // Check if categories exists and is an array.
-            categories.forEach(category => {
-                if (category && category.base_category && !category.base_category.includes('Advertising')) {
-                    console.log('Category does not contain "Advertising" in base_category:', category);
-                }
+        // Check if "advertising" category is present
+        if (categories && Array.isArray(categories)) {
+            const advertisingCategoryExists = categories.some(category => {
+                return category && category.base_category && category.base_category.includes('Advertising');
             });
+
+            if (!advertisingCategoryExists) {
+                console.log('The "Advertising" category is not present in the returned categories.');
+            }
         } else {
             console.log('Categories data is not available or is not an array.');
         }
