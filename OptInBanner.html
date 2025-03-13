@@ -40,16 +40,22 @@
 </script>
 
 <script>
-	window.SecuritiDataLayer = window.SecuritiDataLayer || [];
+window.SecuritiDataLayer = window.SecuritiDataLayer || [];
 SecuritiDataLayer.push([
-    'onConsentGiven',
-    (sdk, consent) => {
-        // Use the consent object as shown below
-        
-        
+    'onConfigLoad',
+    (configSdk) => {
+        console.log('Config Loaded Event Triggered');
+        if (configSdk.isConsentGiven()) {
+            console.log('User has already given consent');
+        }
+        const consentDetails = configSdk.getConsent();
+        console.log('Consent Details:', consentDetails);
         const categories = configSdk.getCategories();
         console.log('Cookie Categories:', categories);
-	    
+        const bannerVersion = configSdk.getBannerVersion();
+        console.log('Banner Version:', bannerVersion);
+        const sdkVersion = configSdk.getSdkVersion();
+        console.log('SDK Version:', sdkVersion);
     }
 ]);
 </script>
