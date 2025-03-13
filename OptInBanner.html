@@ -39,7 +39,27 @@
 })()
 </script>
 
-
+<script>
+	window.SecuritiDataLayer = window.SecuritiDataLayer || [];
+SecuritiDataLayer.push([
+    'onConsentGiven',
+    (sdk, consent) => {
+        // Use the consent object as shown below
+        /*
+          {
+            "category": {
+                "Advertising": "denied",
+                "Analytics & Customization": "denied",
+                "Essential": "granted",
+                "Performance & Functionality": "denied",
+                "Social Networking": "denied"
+            }
+          }
+        */
+        // Add your custom logic here
+    }
+]);
+</script>
 
 <!-- After adding this script, call setConsentBannerParams({uuid: <unique id> }) to set unique ID for a customer.  
 <script>
