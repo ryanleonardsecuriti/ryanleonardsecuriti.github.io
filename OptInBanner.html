@@ -52,6 +52,18 @@ SecuritiDataLayer.push([
         console.log('Consent Details:', consentDetails);
         const categories = configSdk.getCategories();
         console.log('Cookie Categories:', categories);
+
+        // Check for 'Advertising' in base_category
+        if (categories && Array.isArray(categories)) { // Check if categories exists and is an array.
+            categories.forEach(category => {
+                if (category && category.base_category && !category.base_category.includes('Advertising')) {
+                    console.log('Category does not contain "Advertising" in base_category:', category);
+                }
+            });
+        } else {
+            console.log('Categories data is not available or is not an array.');
+        }
+
         const bannerVersion = configSdk.getBannerVersion();
         console.log('Banner Version:', bannerVersion);
         const sdkVersion = configSdk.getSdkVersion();
