@@ -45,7 +45,7 @@ SecuritiDataLayer.push([
     'onConsentGiven',
     (sdk, consent) => {
         // Use the consent object as shown below
-        /*
+        
           {
             "category": {
                 "Advertising": "denied",
@@ -55,8 +55,11 @@ SecuritiDataLayer.push([
                 "Social Networking": "denied"
             }
           }
-        */
-        // Add your custom logic here
+        
+        console.log('category');
+	const categories = configSdk.getCategories();
+        console.log('Cookie Categories:', categories);
+	    
     }
 ]);
 </script>
