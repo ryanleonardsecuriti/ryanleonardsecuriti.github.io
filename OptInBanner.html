@@ -34,23 +34,6 @@
 	s.setAttribute('data-backend-url', 'https://qa.securiti.xyz');
 	s.setAttribute('data-skip-css', 'false');
 	s.defer = true;
-	window.SecuritiDataLayer = window.SecuritiDataLayer || [];
-SecuritiDataLayer.push([
-    'onConsentGiven',
-    (sdk, consent) => {
-        // Use the consent object as shown below
-        
-          {
-            "category": {
-                "Advertising": "denied",
-                "Analytics & Customization": "denied",
-                "Performance & Functionality": "denied",
-                "Social Networking": "denied"
-            }
-          }
-        
-    }
-]);
 	var parent_node = document.head || document.body;
 	parent_node.appendChild(s);
 })()
