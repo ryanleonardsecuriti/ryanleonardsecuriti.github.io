@@ -32,7 +32,7 @@ h1 {
 p {
   font-size: 1rem;
   color: Black;
-  font-family: 'Indie Flower', cursive;
+  font-family: 'Times New Roman', cursive;
 }
 
 img {
@@ -118,6 +118,10 @@ a:hover {
 
 /*---------------------------------*/
 /*Fully Customized Banner*/
+
+.cc-banner p {
+  font-family: 'Indie Flower', cursive;
+}
 
 .cc-link {
   font-family: 'Indie Flower', cursive;
