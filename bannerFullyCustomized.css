@@ -1,0 +1,132 @@
+/*All CSS*/
+
+table, th, td {
+  border:1px solid black;
+  text-align: center;
+  text-decoration: none;
+  border-collapse: collapse;
+  padding: 10px;
+}
+
+td {
+  border-left: 3px solid black;
+  border-right: 3px solid black;
+}
+
+th {
+  border: 3px solid black;
+}
+
+body {
+  background-color: White;
+}
+
+h1 {
+  margin: 30px;
+  font-family: 'Lobster', cursive;
+  text-shadow: 2px 0 #000000;
+  font-size: 5rem;
+  color: #2a99a8;
+}
+
+p {
+  font-size: 1rem;
+  color: Black;
+  font-family: 'Times New Roman', cursive;
+}
+
+img {
+  width: 80%;
+}
+
+footer {
+  margin-top: 5%;
+  color: Black;
+  text-align: center;
+  font-family: 'Times New Roman', cursive;
+}
+
+a {
+  color: #49ccde;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #49ccde;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: Black;
+  text-decoration: underline;
+}
+
+
+
+
+/*---------------------------------*/
+/*Home Page CSS*/
+
+
+.indexContainer {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+
+}
+
+.boxIndex {
+  position: relative;
+  top: 50%;
+  background-color: #2a99a8; 
+  outline-color: Black;
+  outline-style: double;
+  border: 1px White;
+}
+
+.paraIndex {
+  font-size: 2rem;
+  color: Black;
+  font-family: 'Times New Roman', cursive;
+  position: relative;
+  top: 50%;
+}
+
+/*---------------------------------*/
+/*OptInBanner, OptOutBanner*/
+
+
+.container {
+  width: 70%;
+  margin: auto;
+  text-align: center;
+}
+
+.containerTable {
+  margin: auto;
+  text-align: center;
+}
+
+.containerOutline {
+  margin: auto;
+  text-align: center;
+  background-color: #2a99a8; 
+  outline-color: Black;
+  outline-style: double;
+  border: 1px White;
+}
+
+/*---------------------------------*/
+/*Fully Customized Banner*/
+
+.cc-banner * {
+  font-family: 'Indie Flower', cursive;
+}
+
+.cc-link * {
+  font-family: 'Indie Flower', cursive;
+}
+
+.cmp-body * {
+    font-family: 'Indie Flower', cursive;
+}
