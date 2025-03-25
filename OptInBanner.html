@@ -40,42 +40,7 @@
 </script>-->
 
 	<script>
-function sendConsentGivenToDataLayer(consent) {
-	window.dataLayer = window.dataLayer || [];
-	
-    if (!consent || !consent['category']) {
-
-        // EMPTY CONSENT for your requirement ?
-        dataLayer.push({
-                'event': 'consentGiven',
-                'cookieCategory': category,
-                'cookieCategoryState': state
-            });
-
-    } else {
-        var keys = Object.keys(consent['category']);
-      
-        for (var i = 0; i < keys.length; i++) {
-            var category = keys[i];
-            var state = consent['category'][category];
-            dataLayer.push({
-                'event': 'consentGiven',
-                'cookieCategory': category,
-                'cookieCategoryState': state
-            });
-        }
-    }
-}
-
-
 window.SecuritiDataLayer = window.SecuritiDataLayer || [];
-
-window.SecuritiDataLayer.push([
-  'onConfigLoad',
-  function(sdk, consent) {
-      sendConsentGivenToDataLayer(consent);
-  }
-]);
 
 // This will get fired on every page load. make sure this is a requirement here.
 window.SecuritiDataLayer.push([
@@ -83,11 +48,6 @@ window.SecuritiDataLayer.push([
   function(configSdk) {
 	  let state = configSdk.getCategoryConsent('Advertising');
     console.log(state);
-      if (configSdk.isConsentGiven()) {
-          sendConsentGivenToDataLayer(configSdk.getConsent())
-      } else {
-          sendConsentGivenToDataLayer(null)
-      }
   }
 ]);
 </script>
