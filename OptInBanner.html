@@ -53,7 +53,7 @@
         for (var i = 0; i < categories.length; i++) {
             consent[categories[i].name] = (complianceType === 'opt-in' && !categories[i].disable_opt_out) ? 'denied' : 'granted';
         }
-	    console.log("Consents from buildDefaultConsentState: " consent);
+	    console.log("Consents from buildDefaultConsentState: ", consent);
         return consent;
     } catch (e) {
         console.error('Error', e);
