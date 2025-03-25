@@ -172,7 +172,7 @@ window.SecuritiDataLayer.push([
 	    console.log("inside the try");
         var complianceType = 'opt-out'
         var ops = window.__ScrtSdkApiOps;
-        if (ops && ops.ns.bannerOptions && ops.ns.bannerOptions.compliance) {
+        if (ops) {
             complianceType = ops.ns.bannerOptions.compliance;
 	    console.log("compliance type in IF: ", complianceType);
         }
