@@ -55,6 +55,7 @@
             consent[categories[i].name] = (complianceType === 'opt-in' && !categories[i].disable_opt_out) ? 'denied' : 'granted';
         }
         return consent;
+	console.log("consents from buildDefaultConsentState: ", consent);
     } catch (e) {
         console.error('Error', e);
         return {};
