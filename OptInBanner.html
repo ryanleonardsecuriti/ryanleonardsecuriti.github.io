@@ -176,7 +176,7 @@ window.SecuritiDataLayer.push([
             complianceType = ops.ns.bannerOptions.compliance;
 	    console.log("compliance type in IF: ", complianceType);
         }
-	    console.log("compliance type in IF: ", complianceType);
+	    console.log("compliance type outside of IF: ", complianceType);
         var categories = sdk.getCategories();
         var consent = {'category': {}};
         for (var i = 0; i < categories.length; i++) {
