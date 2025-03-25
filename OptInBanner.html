@@ -92,7 +92,6 @@ SecuritiDataLayer.push([
 })()
 </script>
 
-	<!-- Working with delay!
 	<script>
 	function buildDefaultConsentState(sdk) {
     setTimeout(function() { // Add a 5-second delay
@@ -116,7 +115,7 @@ SecuritiDataLayer.push([
             console.error('Error (after delay):', e);
             return {};
         }
-    }, 5000); // 5000 milliseconds = 5 seconds
+    }, 2000); // 5000 milliseconds = 2 seconds
 
     // Return an empty object initially. The real consent object will be sent after the delay.
     return {};
@@ -159,78 +158,13 @@ window.SecuritiDataLayer.push([
             // Modify this part to send the consent after the delay.
             setTimeout(function(){
                 sendConsentGivenToDataLayer(buildDefaultConsentState(sdk));
-            }, 5000);
+            }, 2000);
         }
         console.log("onLoad is triggered");
     }
 ]);
-</script>  -->
+</script>
 
-	<script>
-		function buildDefaultConsentState(sdk) {
-    try {
-	    console.log("inside the try");
-        var complianceType = 'opt-out'
-        var ops = window.__ScrtSdkApiOps;
-        if (ops) {
-            complianceType = ops.ns.bannerOptions.compliance;
-	    console.log("compliance type in IF: ", complianceType);
-        }
-	    console.log("compliance type outside of IF: ", complianceType);
-        var categories = sdk.getCategories();
-        var consent = {'category': {}};
-        for (var i = 0; i < categories.length; i++) {
-            consent[categories[i].name] = (complianceType === 'opt-in' && !categories[i].disable_opt_out) ? 'denied' : 'granted';
-        }
-	    console.log("consents from buildDefaultConsentState: ", consent);
-        return consent;
-    } catch (e) {
-        console.error('Error', e);
-        return {};
-    }
-}
-
-function sendConsentGivenToDataLayer(consent) {
-    if (consent && consent['category']) {
-        var keys = Object.keys(consent['category']);
-
-        for (var i = 0; i < keys.length; i++) {
-            var category = keys[i];
-            var state = consent['category'][category];
-            dataLayer.push({
-                'event': 'consentGiven',
-                'cookieCategory': category,
-                'cookieCategoryState': state
-            });
-        }
-    } else {
-        console.log('Consent is not available, sendConsentGivenToDataLayer is failed');
-    }
-}
-
-window.SecuritiDataLayer = window.SecuritiDataLayer || [];
-
-window.SecuritiDataLayer.push([
-    'onConsentGiven',
-    function(sdk, consent) {
-        sendConsentGivenToDataLayer(consent);
-    }
-]);
-
-// This will get fired on every page load.
-window.SecuritiDataLayer.push([
-    'onLoad',
-    function(sdk) {
-	console.log("onLoad is triggered");
-        if (sdk.isConsentGiven()) {
-            sendConsentGivenToDataLayer(sdk.getConsent())
-        } else {
-		console.log("running buildDefaultCOnsentState");
-            buildDefaultConsentState(sdk)
-        }
-    }
-]);
-	</script>
 
 
   <script>
