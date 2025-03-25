@@ -4,7 +4,7 @@
 </head>
 <body>
 	<div class="container">
-	<h1 style="font-family: Arial; font-size: 4rem">This is an Opt In banner</h1>
+	<h1 style="font-family: Arial; font-size: 4rem">This is an Opt In bannerv2</h1>
 	<p><a href="https://ryanleonardsecuriti.github.io">Click Here to select a different banner</a></p>
 	</div>
 	<br>
@@ -40,23 +40,49 @@
 </script>-->
 
 	<script>
-window.SecuritiDataLayer = window.SecuritiDataLayer || [];
-SecuritiDataLayer.push([
-    'onConfigLoad',
-    (configSdk) => {
-        console.log('Config Loaded Event Triggered');
-        if (configSdk.isConsentGiven()) {
-            console.log('User has already given consent');
+function sendConsentGivenToDataLayer(consent) {
+    if (!consent || !consent['category']) {
+
+        // EMPTY CONSENT for your requirement ?
+        dataLayer.push({
+            'event': 'consentGiven'
+        });
+
+    } else {
+        var keys = Object.keys(consent['category']);
+      
+        for (var i = 0; i < keys.length; i++) {
+            var category = keys[i];
+            var state = consent['category'][category];
+            dataLayer.push({
+                'event': 'consentGiven',
+                'cookieCategory': category,
+                'cookieCategoryState': state
+            });
         }
-        const consentDetails = configSdk.getConsent();
-        console.log('Consent Details:', consentDetails);
-        const categories = configSdk.getCategories();
-        console.log('Cookie Categories:', categories);
-        const bannerVersion = configSdk.getBannerVersion();
-        console.log('Banner Version:', bannerVersion);
-        const sdkVersion = configSdk.getSdkVersion();
-        console.log('SDK Version:', sdkVersion);
     }
+}
+
+
+window.SecuritiDataLayer = window.SecuritiDataLayer || [];
+
+window.SecuritiDataLayer.push([
+  'onConfigLoad',
+  function(sdk, consent) {
+      sendConsentGivenToDataLayer(consent);
+  }
+]);
+
+// This will get fired on every page load. make sure this is a requirement here.
+window.SecuritiDataLayer.push([
+  'onConfigLoad',
+  function(configSdk) {
+      if (configSdk.isConsentGiven()) {
+          sendConsentGivenToDataLayer(configSdk.getConsent())
+      } else {
+          sendConsentGivenToDataLayer(null)
+      }
+  }
 ]);
 </script>
 
