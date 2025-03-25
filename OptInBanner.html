@@ -81,7 +81,7 @@ window.SecuritiDataLayer.push([
 window.SecuritiDataLayer.push([
   'onConfigLoad',
   function(configSdk) {
-	  let state = sdk.getCategoryConsent('Advertising');
+	  let state = configSdk.getCategoryConsent('Advertising');
     console.log(state);
       if (configSdk.isConsentGiven()) {
           sendConsentGivenToDataLayer(configSdk.getConsent())
