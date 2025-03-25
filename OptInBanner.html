@@ -46,8 +46,10 @@ function sendConsentGivenToDataLayer(consent) {
 
         // EMPTY CONSENT for your requirement ?
         dataLayer.push({
-            'event': 'consentGiven'
-        });
+                'event': 'consentGiven',
+                'cookieCategory': category,
+                'cookieCategoryState': state
+            });
 
     } else {
         var keys = Object.keys(consent['category']);
