@@ -166,7 +166,7 @@ window.SecuritiDataLayer.push([
 </script>-->
 
 	<script>
-		function buildDefaultConsentState(sdk) {
+function buildDefaultConsentState(sdk) {
     function attemptBuild() {
         try {
             var complianceType = 'opt-out';
@@ -189,8 +189,7 @@ window.SecuritiDataLayer.push([
                 return {}; // Return empty object for now
             }
         } catch (e) {
-            console.error('Error (retry):', e);
-            setTimeout(attemptBuild, 100); // Retry on error as well.
+            console.error('Error', e);
             return {};
         }
     }
@@ -230,20 +229,10 @@ window.SecuritiDataLayer.push([
     'onLoad',
     function(sdk) {
         if (sdk.isConsentGiven()) {
-            sendConsentGivenToDataLayer(sdk.getConsent());
+            sendConsentGivenToDataLayer(sdk.getConsent())
         } else {
-            // Modify this part to send the consent after the retry.
-            function attemptSend(){
-                var consent = buildDefaultConsentState(sdk);
-                if (Object.keys(consent).length > 0){
-                    sendConsentGivenToDataLayer(consent);
-                } else {
-                    setTimeout(attemptSend, 100);
-                }
-            }
-            attemptSend();
+            sendConsentGivenToDataLayer(buildDefaultConsentState(sdk))
         }
-        console.log("onLoad is triggered");
     }
 ]);
 	</script>
