@@ -24,7 +24,7 @@
 	
 
 
-<!-- After adding this script, call setConsentBannerParams({uuid: <unique id> }) to set unique ID for a customer.  -->
+<!-- After adding this script, call setConsentBannerParams({uuid: <unique id> }) to set unique ID for a customer.  
 <script>
 (function () {
 	var s = document.createElement('script');
@@ -37,6 +37,27 @@
 	var parent_node = document.head || document.body;
 	parent_node.appendChild(s);
 })()
+</script>-->
+
+	<script>
+window.SecuritiDataLayer = window.SecuritiDataLayer || [];
+SecuritiDataLayer.push([
+    'onConfigLoad',
+    (configSdk) => {
+        console.log('Config Loaded Event Triggered');
+        if (configSdk.isConsentGiven()) {
+            console.log('User has already given consent');
+        }
+        const consentDetails = configSdk.getConsent();
+        console.log('Consent Details:', consentDetails);
+        const categories = configSdk.getCategories();
+        console.log('Cookie Categories:', categories);
+        const bannerVersion = configSdk.getBannerVersion();
+        console.log('Banner Version:', bannerVersion);
+        const sdkVersion = configSdk.getSdkVersion();
+        console.log('SDK Version:', sdkVersion);
+    }
+]);
 </script>
 
 <!--<script>
@@ -72,9 +93,9 @@ SecuritiDataLayer.push([
         console.log('SDK Version:', sdkVersion);
     }
 ]);
-</script>-->
+</script>
 
-<!-- After adding this script, call setConsentBannerParams({uuid: <unique id> }) to set unique ID for a customer.  
+<!-- After adding this script, call setConsentBannerParams({uuid: <unique id> }) to set unique ID for a customer.  -->
 <script>
 (function () {
 	var s = document.createElement('script');
@@ -87,53 +108,6 @@ SecuritiDataLayer.push([
 	var parent_node = document.head || document.body;
 	parent_node.appendChild(s);
 })()
-</script>-->
-
-<script>
-	function sendConsentGivenToDataLayer(consent) {
-    if (!consent || !consent['category']) {
-
-        // EMPTY CONSENT for your requirement ?
-        dataLayer.push({
-            'event': 'consentGiven'
-        });
-
-    } else {
-        var keys = Object.keys(consent['category']);
-      
-        for (var i = 0; i < keys.length; i++) {
-            var category = keys[i];
-            var state = consent['category'][category];
-            dataLayer.push({
-                'event': 'consentGiven',
-                'cookieCategory': category,
-                'cookieCategoryState': state
-            });
-        }
-    }
-}
-
-
-window.SecuritiDataLayer = window.SecuritiDataLayer || [];
-
-window.SecuritiDataLayer.push([
-  'onConfigLoad',
-  function(sdk, consent) {
-      sendConsentGivenToDataLayer(consent);
-  }
-]);
-
-// This will get fired on every page load. make sure this is a requirement here.
-window.SecuritiDataLayer.push([
-  'onConfigLoad',
-  function(configSdk) {
-      if (configSdk.isConsentGiven()) {
-          sendConsentGivenToDataLayer(configSdk.getConsent())
-      } else {
-          sendConsentGivenToDataLayer(null)
-      }
-  }
-]);
 </script>
 
 
