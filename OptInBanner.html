@@ -40,39 +40,63 @@
 </script>-->
 
 <script>
+	function buildDefaultConsentState(sdk) {
+    try {
+        var complianceType = 'opt-out'
+        var ops = window.__ScrtSdkApiOps;
+        if (ops && ops.ns.bannerOptions && ops.ns.bannerOptions.compliance) {
+            complianceType = ops.ns.bannerOptions.compliance;
+        }
+        var categories = sdk.getCategories();
+        var consent = {'category': {}};
+        for (var i = 0; i < categories.length; i++) {
+            consent[categories[i].name] = (complianceType === 'opt-in' && !categories[i].disable_opt_out) ? 'denied' : 'granted';
+        }
+        return consent;
+    } catch (e) {
+        console.error('Error', e);
+        return {};
+    }
+}
+
+function sendConsentGivenToDataLayer(consent) {
+    if (consent && consent['category']) {
+        var keys = Object.keys(consent['category']);
+
+        for (var i = 0; i < keys.length; i++) {
+            var category = keys[i];
+            var state = consent['category'][category];
+            dataLayer.push({
+                'event': 'consentGiven',
+                'cookieCategory': category,
+                'cookieCategoryState': state
+            });
+        }
+    } else {
+        console.log('Consent is not available, sendConsentGivenToDataLayer is failed');
+    }
+}
+
 window.SecuritiDataLayer = window.SecuritiDataLayer || [];
 
-SecuritiDataLayer.push([
+window.SecuritiDataLayer.push([
     'onConsentGiven',
-    (sdk, consent) => {
-        // Use the consent object as shown below
-        /*
-          {
-            "category": {
-                "Advertising": "denied",
-                "Analytics & Customization": "denied",
-                "Essential": "granted",
-                "Performance & Functionality": "denied",
-                "Social Networking": "denied"
-            }
-          }
-        */
-        // Add your custom logic here
-
-        // Example: Accessing Analytics consent state after consent is given
-        let analyticsConsent = consent.category['Analytics & Customization'];
-        console.log("Analytics Consent after onConsentGiven:", analyticsConsent);
-
-        // Example: Using the sdk.getCategoryConsent function after consent is given.
-        let state = sdk.getCategoryConsent('Analytics & Customization');
-        console.log("Analytics Consent after onConsentGiven (using sdk.getCategoryConsent):", state);
+    function(sdk, consent) {
+        sendConsentGivenToDataLayer(consent);
     }
 ]);
 
-SecuritiSDK.onReady(sdk => {
-    let state = sdk.getCategoryConsent('Analytics & Customization');
-    console.log("Analytics Consent on SecuritiSDK.onReady:", state);
-});
+// This will get fired on every page load.
+window.SecuritiDataLayer.push([
+    'onLoad',
+    function(sdk) {
+        if (sdk.isConsentGiven()) {
+            sendConsentGivenToDataLayer(sdk.getConsent())
+        } else {
+            sendConsentGivenToDataLayer(buildDefaultConsentState(sdk))
+        }
+    }
+]);
 </script>
 
 	
