@@ -40,12 +40,40 @@
 </script>-->
 
 <script>
+window.SecuritiDataLayer = window.SecuritiDataLayer || [];
+
+SecuritiDataLayer.push([
+    'onConsentGiven',
+    (sdk, consent) => {
+        // Use the consent object as shown below
+        /*
+          {
+            "category": {
+                "Advertising": "denied",
+                "Analytics & Customization": "denied",
+                "Essential": "granted",
+                "Performance & Functionality": "denied",
+                "Social Networking": "denied"
+            }
+          }
+        */
+        // Add your custom logic here
+
+        // Example: Accessing Analytics consent state after consent is given
+        let analyticsConsent = consent.category['Analytics & Customization'];
+        console.log("Analytics Consent after onConsentGiven:", analyticsConsent);
+
+        // Example: Using the sdk.getCategoryConsent function after consent is given.
+        let state = sdk.getCategoryConsent('Analytics & Customization');
+        console.log("Analytics Consent after onConsentGiven (using sdk.getCategoryConsent):", state);
+    }
+]);
+
 SecuritiSDK.onReady(sdk => {
-    let state = sdk.getCategoryConsent('Analytics');
-    console.log(state);
+    let state = sdk.getCategoryConsent('Analytics & Customization');
+    console.log("Analytics Consent on SecuritiSDK.onReady:", state);
 });
 </script>
-
 
 	
 <!--<script>
