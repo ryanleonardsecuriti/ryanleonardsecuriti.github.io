@@ -39,15 +39,26 @@
 })()
 </script>-->
 
-	<script>
+<script>
 window.SecuritiDataLayer = window.SecuritiDataLayer || [];
-
-// This will get fired on every page load. make sure this is a requirement here.
-window.SecuritiDataLayer.push([
-  SecuritiSDK.onReady(sdk => {
-    let state = sdk.getCategoryConsent('Analytics');
-    console.log(state);
-});
+SecuritiDataLayer.push([
+    'onConfigLoad',
+    (configSdk) => {
+	let state = configSdk.getCategoryConsent('Advertising');
+    	console.log(state);
+        console.log('Config Loaded Event Triggered');
+        if (configSdk.isConsentGiven()) {
+            console.log('User has already given consent');
+        }
+        const consentDetails = configSdk.getConsent();
+        console.log('Consent Details:', consentDetails);
+        const categories = configSdk.getCategories();
+        console.log('Cookie Categories:', categories);
+        const bannerVersion = configSdk.getBannerVersion();
+        console.log('Banner Version:', bannerVersion);
+        const sdkVersion = configSdk.getSdkVersion();
+        console.log('SDK Version:', sdkVersion);
+    }
 ]);
 </script>
 
