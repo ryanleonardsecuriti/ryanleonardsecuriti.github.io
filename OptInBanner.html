@@ -81,8 +81,8 @@ window.SecuritiDataLayer.push([
 window.SecuritiDataLayer.push([
   'onConfigLoad',
   function(configSdk) {
-	  const categories = configSdk.getCategories();
-        console.log('Cookie Categories:', categories);
+	  let state = sdk.getCategoryConsent('Advertising');
+    console.log(state);
       if (configSdk.isConsentGiven()) {
           sendConsentGivenToDataLayer(configSdk.getConsent())
       } else {
