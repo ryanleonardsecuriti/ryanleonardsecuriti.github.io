@@ -90,7 +90,7 @@ window.SecuritiDataLayer.push([
 
 // This will get fired on every page load.
 window.SecuritiDataLayer.push([
-    'onConfigLoad',
+    'onLoad',
     function(sdk) {
         if (sdk.isConsentGiven()) {
             sendConsentGivenToDataLayer(sdk.getConsent())
