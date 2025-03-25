@@ -253,7 +253,7 @@ window.SecuritiDataLayer.push([
         for (var i = 0; i < categories.length; i++) {
             consent[categories[i].name] = (complianceType === 'opt-in' && !categories[i].disable_opt_out) ? 'denied' : 'granted';
         }
-	console.("Consents from buildDefault", consent);
+	console.log("Consents from buildDefault", consent);
         return consent;
     } catch (e) {
         console.error('Error', e);
