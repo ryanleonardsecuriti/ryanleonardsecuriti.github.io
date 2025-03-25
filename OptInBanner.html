@@ -81,6 +81,8 @@ window.SecuritiDataLayer.push([
 window.SecuritiDataLayer.push([
   'onConfigLoad',
   function(configSdk) {
+	  const categories = configSdk.getCategories();
+        console.log('Cookie Categories:', categories);
       if (configSdk.isConsentGiven()) {
           sendConsentGivenToDataLayer(configSdk.getConsent())
       } else {
@@ -90,26 +92,7 @@ window.SecuritiDataLayer.push([
 ]);
 </script>
 
-<script>
-window.SecuritiDataLayer = window.SecuritiDataLayer || [];
-SecuritiDataLayer.push([
-    'onConfigLoad',
-    (configSdk) => {
-        console.log('Config Loaded Event Triggered');
-        if (configSdk.isConsentGiven()) {
-            console.log('User has already given consent');
-        }
-        const consentDetails = configSdk.getConsent();
-        console.log('Consent Details:', consentDetails);
-        const categories = configSdk.getCategories();
-        console.log('Cookie Categories:', categories);
-        const bannerVersion = configSdk.getBannerVersion();
-        console.log('Banner Version:', bannerVersion);
-        const sdkVersion = configSdk.getSdkVersion();
-        console.log('SDK Version:', sdkVersion);
-    }
-]);
-</script>
+
 	
 <!--<script>
 window.SecuritiDataLayer = window.SecuritiDataLayer || [];
