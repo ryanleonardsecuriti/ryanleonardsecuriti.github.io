@@ -42,6 +42,8 @@
 	<script>
 function sendConsentGivenToDataLayer(consent) {
 	window.dataLayer = window.dataLayer || [];
+	const categories = configSdk.getCategories();
+        console.log('Cookie Categories:', categories);
     if (!consent || !consent['category']) {
 
         // EMPTY CONSENT for your requirement ?
