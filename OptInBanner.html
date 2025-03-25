@@ -43,7 +43,7 @@
 	window.dataLayer = window.dataLayer || [];
 	function buildDefaultConsentState(sdk) {
     try {
-        var complianceType = 'opt-out'
+        //var complianceType = 'opt-out'
         var ops = window.__ScrtSdkApiOps;
         if (ops && ops.ns.bannerOptions && ops.ns.bannerOptions.compliance) {
             complianceType = ops.ns.bannerOptions.compliance;
