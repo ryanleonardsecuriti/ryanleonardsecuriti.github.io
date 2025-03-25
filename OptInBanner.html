@@ -165,7 +165,7 @@ window.SecuritiDataLayer.push([
 ]);
 </script>-->
 
-	<script>
+	<!--<script> WORK V2
 window.dataLayer = window.dataLayer || [];
 function buildDefaultConsentState(sdk) {
     function attemptBuild() {
@@ -236,9 +236,70 @@ window.SecuritiDataLayer.push([
         }
     }
 ]);
-	</script>
+	</script>-->
 
+<script>
+	function buildDefaultConsentState(sdk) {
+    try {
+        var complianceType = 'opt-out'
+        var ops = window.__ScrtSdkApiOps;
+        if (ops && ops.ns.bannerOptions && ops.ns.bannerOptions.compliance) {
+            complianceType = ops.ns.bannerOptions.compliance;
+		console.log("Compliance Type captured from banner: ",complianceType);
+        }
+	console.log("Compliance Type from hardcoded: ",complianceType);
+        var categories = sdk.getCategories();
+        var consent = {'category': {}};
+        for (var i = 0; i < categories.length; i++) {
+            consent[categories[i].name] = (complianceType === 'opt-in' && !categories[i].disable_opt_out) ? 'denied' : 'granted';
+        }
+	console.("Consents from buildDefault", consent);
+        return consent;
+    } catch (e) {
+        console.error('Error', e);
+        return {};
+    }
+}
 
+function sendConsentGivenToDataLayer(consent) {
+    if (consent && consent['category']) {
+        var keys = Object.keys(consent['category']);
+
+        for (var i = 0; i < keys.length; i++) {
+            var category = keys[i];
+            var state = consent['category'][category];
+            dataLayer.push({
+                'event': 'consentGiven',
+                'cookieCategory': category,
+                'cookieCategoryState': state
+            });
+        }
+    } else {
+        console.log('Consent is not available, sendConsentGivenToDataLayer is failed');
+    }
+}
+
+window.SecuritiDataLayer = window.SecuritiDataLayer || [];
+
+window.SecuritiDataLayer.push([
+    'onConsentGiven',
+    function(sdk, consent) {
+        sendConsentGivenToDataLayer(consent);
+    }
+]);
+
+// This will get fired on every page load.
+window.SecuritiDataLayer.push([
+    'onLoad',
+    function(sdk) {
+        if (sdk.isConsentGiven()) {
+            sendConsentGivenToDataLayer(sdk.getConsent())
+        } else {
+            sendConsentGivenToDataLayer(buildDefaultConsentState(sdk))
+        }
+    }
+]);
+</script>
 
   <script>
   function setTestCookie() {
