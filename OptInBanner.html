@@ -44,11 +44,10 @@ window.SecuritiDataLayer = window.SecuritiDataLayer || [];
 
 // This will get fired on every page load. make sure this is a requirement here.
 window.SecuritiDataLayer.push([
-  'onConfigLoad',
-  function(configSdk) {
-	  let state = configSdk.getCategoryConsent('Advertising');
+  SecuritiSDK.onReady(sdk => {
+    let state = sdk.getCategoryConsent('Analytics');
     console.log(state);
-  }
+});
 ]);
 </script>
 
