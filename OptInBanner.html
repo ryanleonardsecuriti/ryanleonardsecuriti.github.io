@@ -39,11 +39,64 @@
 })()
 </script>-->
 
+
+
+	
+<!--<script>
+window.SecuritiDataLayer = window.SecuritiDataLayer || [];
+SecuritiDataLayer.push([
+    'onConfigLoad',
+    (configSdk) => {
+        console.log('Config Loaded Event Triggered');
+        if (configSdk.isConsentGiven()) {
+            console.log('User has already given consent');
+        }
+        const consentDetails = configSdk.getConsent();
+        console.log('Consent Details:', consentDetails);
+        const categories = configSdk.getCategories();
+        console.log('Cookie Categories:', categories);
+
+        // Check if "advertising" category is present
+        if (categories && Array.isArray(categories)) {
+            const advertisingCategoryExists = categories.some(category => {
+                return category && category.base_category && category.base_category.includes('Advertising');
+            });
+
+            if (!advertisingCategoryExists) {
+                console.log('The "Advertising" category is not present in the returned categories.');
+            }
+        } else {
+            console.log('Categories data is not available or is not an array.');
+        }
+
+        const bannerVersion = configSdk.getBannerVersion();
+        console.log('Banner Version:', bannerVersion);
+        const sdkVersion = configSdk.getSdkVersion();
+        console.log('SDK Version:', sdkVersion);
+    }
+]);
+</script>
+
+<!-- After adding this script, call setConsentBannerParams({uuid: <unique id> }) to set unique ID for a customer.  -->
 <script>
+(function () {
+	var s = document.createElement('script');
+	s.src = 'https://cdn-prod.securiti.ai/consent/cookie-consent-sdk-loader.js';
+	s.setAttribute('data-tenant-uuid', 'f849f6ee-3145-493e-a066-f4277dd87cb8');
+	s.setAttribute('data-domain-uuid', 'fa8faaa2-f491-4724-96bd-ef966cbc7ba9');
+	s.setAttribute('data-backend-url', 'https://app.securiti.ai');
+	s.setAttribute('data-skip-css', 'false');
+	s.defer = true;
+	var parent_node = document.head || document.body;
+	parent_node.appendChild(s);
+})()
+</script>
+
+	<script>
 	window.dataLayer = window.dataLayer || [];
 	function buildDefaultConsentState(sdk) {
     try {
-        //var complianceType = 'opt-out'
+        var complianceType = 'opt-out'
         var ops = window.__ScrtSdkApiOps;
         if (ops && ops.ns.bannerOptions && ops.ns.bannerOptions.compliance) {
             complianceType = ops.ns.bannerOptions.compliance;
@@ -102,57 +155,6 @@ window.SecuritiDataLayer.push([
 
     }
 ]);
-</script>
-
-	
-<!--<script>
-window.SecuritiDataLayer = window.SecuritiDataLayer || [];
-SecuritiDataLayer.push([
-    'onConfigLoad',
-    (configSdk) => {
-        console.log('Config Loaded Event Triggered');
-        if (configSdk.isConsentGiven()) {
-            console.log('User has already given consent');
-        }
-        const consentDetails = configSdk.getConsent();
-        console.log('Consent Details:', consentDetails);
-        const categories = configSdk.getCategories();
-        console.log('Cookie Categories:', categories);
-
-        // Check if "advertising" category is present
-        if (categories && Array.isArray(categories)) {
-            const advertisingCategoryExists = categories.some(category => {
-                return category && category.base_category && category.base_category.includes('Advertising');
-            });
-
-            if (!advertisingCategoryExists) {
-                console.log('The "Advertising" category is not present in the returned categories.');
-            }
-        } else {
-            console.log('Categories data is not available or is not an array.');
-        }
-
-        const bannerVersion = configSdk.getBannerVersion();
-        console.log('Banner Version:', bannerVersion);
-        const sdkVersion = configSdk.getSdkVersion();
-        console.log('SDK Version:', sdkVersion);
-    }
-]);
-</script>
-
-<!-- After adding this script, call setConsentBannerParams({uuid: <unique id> }) to set unique ID for a customer.  -->
-<script>
-(function () {
-	var s = document.createElement('script');
-	s.src = 'https://cdn-prod.securiti.ai/consent/cookie-consent-sdk-loader.js';
-	s.setAttribute('data-tenant-uuid', 'f849f6ee-3145-493e-a066-f4277dd87cb8');
-	s.setAttribute('data-domain-uuid', 'fa8faaa2-f491-4724-96bd-ef966cbc7ba9');
-	s.setAttribute('data-backend-url', 'https://app.securiti.ai');
-	s.setAttribute('data-skip-css', 'false');
-	s.defer = true;
-	var parent_node = document.head || document.body;
-	parent_node.appendChild(s);
-})()
 </script>
 
 
