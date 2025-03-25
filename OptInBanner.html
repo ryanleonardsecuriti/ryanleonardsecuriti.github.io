@@ -42,7 +42,7 @@
 <script>
 	window.dataLayer = window.dataLayer || [];
 	function buildDefaultConsentState(sdk) {
-    
+    try {
         var complianceType = 'opt-out'
         var ops = window.__ScrtSdkApiOps;
         if (ops && ops.ns.bannerOptions && ops.ns.bannerOptions.compliance) {
@@ -54,9 +54,11 @@
         for (var i = 0; i < categories.length; i++) {
             consent[categories[i].name] = (complianceType === 'opt-in' && !categories[i].disable_opt_out) ? 'denied' : 'granted';
         }
-	    console.log("Consents from buildDefaultConsentState: ", consent);
         return consent;
-    
+    } catch (e) {
+        console.error('Error', e);
+        return {};
+    }
 }
 
 function sendConsentGivenToDataLayer(consent) {
@@ -88,7 +90,7 @@ window.SecuritiDataLayer.push([
 
 // This will get fired on every page load.
 window.SecuritiDataLayer.push([
-    'onLoad',
+    'onConfigLoad',
     function(sdk) {
         if (sdk.isConsentGiven()) {
             sendConsentGivenToDataLayer(sdk.getConsent())
