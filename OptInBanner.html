@@ -41,6 +41,7 @@
 
 	<script>
 function sendConsentGivenToDataLayer(consent) {
+	window.dataLayer = window.dataLayer || [];
     if (!consent || !consent['category']) {
 
         // EMPTY CONSENT for your requirement ?
