@@ -25,6 +25,23 @@ SecuritiDataLayer.push([
 ]);
 </script>
 
+	<script>
+		// This will get fired on every page load.
+window.SecuritiDataLayer.push([
+    'onLoad',
+    function(sdk) {
+        if (sdk.isConsentGiven()) {
+	const wallDiv = document.querySelector('.wall');
+		if (wallDiv) {
+	            wallDiv.style.display = 'none';
+	        }
+        } else {
+		return;
+        }
+    }
+]);
+	</script>
+
 
 <script>
 (function () {
