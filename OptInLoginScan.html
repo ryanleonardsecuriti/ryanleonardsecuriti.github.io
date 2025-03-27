@@ -44,12 +44,14 @@ window.SecuritiDataLayer.push([
 ]);
 
 window.SecuritiDataLayer.push([
-    'onConsentGiven',
-    function(sdk, consent) {
+    'onConsentGiven',
+    function(sdk, consent) {
 	const wallDiv = document.getElementById('wall');
 		if (wallDiv) {
 	            wallDiv.classList.remove('wall');
-			console.log("removed wall");    }
+			console.log("removed wall");
+	        }
+    }
 ]);
 	</script>
 
