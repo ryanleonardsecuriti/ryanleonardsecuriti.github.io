@@ -3,7 +3,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<div class="wall">
+	<div id="wall">
 	</div>
 	
 	<div class="container">
@@ -12,7 +12,7 @@
 	</div>
 	
 
-<script>
+<!--<script>
 	window.SecuritiDataLayer = window.SecuritiDataLayer || [];
 SecuritiDataLayer.push([
     'onConsentGiven',
@@ -23,22 +23,22 @@ SecuritiDataLayer.push([
         }
     }
 ]);
-</script>
+</script>-->
 
 	<script>
 		// This will get fired on every page load.
 window.SecuritiDataLayer.push([
-    'onLoad',
-    function(sdk) {
-        if (sdk.isConsentGiven()) {
-	 return;
-        } else {
-		const wallDiv = document.querySelector('.wall');
+    'onLoad',
+    function(sdk) {
+        if (sdk.isConsentGiven()) {
+	 	return;
+        } else {
+		const wallDiv = document.getElementById('wall');
 		if (wallDiv) {
-	            wallDiv.style.display = 'none';
+	            wallDiv.classList.add('wall');
 	        }
-        }
-    }
+        }
+    }
 ]);
 	</script>
 
