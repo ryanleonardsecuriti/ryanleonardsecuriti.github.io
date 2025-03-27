@@ -11,7 +11,19 @@
 	<p><a href="https://ryanleonardsecuriti.github.io">Click Here to select a different banner</a></p>
 	</div>
 	
-	
+
+<script>
+	window.SecuritiDataLayer = window.SecuritiDataLayer || [];
+SecuritiDataLayer.push([
+    'onConsentGiven',
+    (sdk, consent) => {
+        const wallDiv = document.querySelector('.wall');
+        if (wallDiv) {
+            wallDiv.classList.add('wall-hide');
+        }
+    }
+]);
+</script>
 
 
 <script>
