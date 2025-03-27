@@ -19,6 +19,7 @@ SecuritiDataLayer.push([
     (sdk, consent) => {
         const wallDiv = document.querySelector('.wall');
         if (wallDiv) {
+            wallDiv.classList.remove('wall');
             wallDiv.classList.add('wall-hide');
         }
     }
