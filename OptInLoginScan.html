@@ -31,12 +31,12 @@ window.SecuritiDataLayer.push([
     'onLoad',
     function(sdk) {
         if (sdk.isConsentGiven()) {
-	const wallDiv = document.querySelector('.wall');
+	 return;
+        } else {
+		const wallDiv = document.querySelector('.wall');
 		if (wallDiv) {
 	            wallDiv.style.display = 'none';
 	        }
-        } else {
-		return;
         }
     }
 ]);
