@@ -3,7 +3,6 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<div id="wall"></div>
 	
 	<div class="container">
 	<h1 style="font-family: Arial; font-size: 4rem">Opt In Only Scan Test v1</h1>
@@ -25,35 +24,33 @@ SecuritiDataLayer.push([
 </script>-->
 
 	<script>
-	window.SecuritiDataLayer = window.SecuritiDataLayer || [];
-window.SecuritiDataLayer.push([
-    'onLoad',
-    function(sdk) {
-        if (sdk.isConsentGiven()) {
-		console.log("in if");
-	 	return;
-        } else {
-		console.log("in else");
-		const wallDiv = document.getElementById('wall');
-		if (wallDiv) {
-	            wallDiv.classList.add('wall');
-			console.log("added wall");
-	        }
-        }
-    }
-]);
+	<div id="wall"></div>
 
-window.SecuritiDataLayer.push([
-    'onConsentGiven',
-    function(sdk, consent) {
-	const wallDiv = document.getElementById('wall');
-		if (wallDiv) {
-	            wallDiv.classList.remove('wall');
-			console.log("removed wall");
-	        }
-    }
-]);
-	</script>
+	window.SecuritiDataLayer = window.SecuritiDataLayer || [];
+	window.SecuritiDataLayer.push([
+		'onLoad',
+		function(sdk) {
+		        if (sdk.isConsentGiven()) {
+				return;
+        		} else {
+				const wallDiv = document.getElementById('wall');
+				if (wallDiv) {
+					wallDiv.classList.add('wall');
+	        		}
+        		}
+    		}
+	]);
+
+	window.SecuritiDataLayer.push([
+		'onConsentGiven',
+		function(sdk, consent) {
+			const wallDiv = document.getElementById('wall');
+			if (wallDiv) {
+				wallDiv.classList.remove('wall');
+	        	}
+    		}
+	]);
+</script>
 
 
 <script>
