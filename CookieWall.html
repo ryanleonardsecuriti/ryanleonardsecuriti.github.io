@@ -1,7 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
+	<script>
+	window.SecuritiDataLayer = window.SecuritiDataLayer || [];
+	window.SecuritiDataLayer.push([
+		'onLoad',
+		function(sdk) {
+		        if (sdk.isConsentGiven()) {
+				return;
+        		} else {
+				const wallDiv = document.getElementById('wall');
+				if (wallDiv) {
+					wallDiv.classList.add('wall');
+	        		}
+        		}
+    		}
+	]);
+
+	window.SecuritiDataLayer.push([
+		'onConsentGiven',
+		function(sdk, consent) {
+			const wallDiv = document.getElementById('wall');
+			if (wallDiv) {
+				wallDiv.classList.remove('wall');
+	        	}
+    		}
+	]);
+</script>
 <!-- After adding this script, call setConsentBannerParams({uuid: <unique id> }) to set unique ID for a customer.  -->
 <script>
 (function () {
@@ -103,6 +128,8 @@
     </style>
 </head>
 <body>
+<div id="wall"></div>
+
     <header>
         <h1>Welcome to My Simple Website</h1>
         <nav>
