@@ -64,7 +64,7 @@ a:hover {
   border: 1px White;
 }
 
-.wall {
+.cookie-overlay-active {
     background: rgba(0, 0, 0, .5);
     z-index: 9998;
     width: 100%;
