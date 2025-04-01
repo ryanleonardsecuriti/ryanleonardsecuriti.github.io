@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<div id="cookie-overlay"></div>
 	<script>
 	window.SecuritiDataLayer = window.SecuritiDataLayer || [];
 	window.SecuritiDataLayer.push([
@@ -9,9 +10,9 @@
 		        if (sdk.isConsentGiven()) {
 				return;
         		} else {
-				const wallDiv = document.getElementById('wall');
-				if (wallDiv) {
-					wallDiv.classList.add('wall');
+				const cookieOverlayDiv = document.getElementById('cookie-overlay');
+				if (cookieOverlayDiv) {
+					cookieOverlayDiv.classList.add('cookie-overlay-active');
 	        		}
         		}
     		}
@@ -20,9 +21,9 @@
 	window.SecuritiDataLayer.push([
 		'onConsentGiven',
 		function(sdk, consent) {
-			const wallDiv = document.getElementById('wall');
-			if (wallDiv) {
-				wallDiv.classList.remove('wall');
+			const cookieOverlayDiv = document.getElementById('cookie-overlay');
+			if (cookieOverlayDiv) {
+				cookieOverlayDiv.classList.remove('cookie-overlay-active');
 	        	}
     		}
 	]);
@@ -122,7 +123,7 @@
     font-size: 10px;
 	    }
 
-	.wall {
+	.cookie-overlay-active {
     background: rgba(0, 0, 0, .5);
     z-index: 9998;
     width: 100%;
