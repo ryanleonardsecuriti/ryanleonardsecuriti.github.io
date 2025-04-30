@@ -130,3 +130,14 @@ a:hover {
 .cmp-body * {
     font-family: 'Indie Flower', cursive;
 }
+
+cmp-revoke-consent {
+  padding-left: 30px; 
+  background-image: url('cookie.png'); /* Replace with your icon path */
+  background-repeat: no-repeat;
+  background-position: left center; 
+  background-size: 20px 20px; 
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+}
