@@ -136,8 +136,12 @@ a:hover {
   background-image: url('https://xjhasojsvzxuxxklujmu.supabase.co/storage/v1/object/public/cookie//cookie.png'); /* Replace with your icon path */
   background-repeat: no-repeat;
   background-position: left center; 
-  background-size: 20px 20px; 
+  background-size: 50px; 
   position: fixed;
   bottom: 20px;
   left: 20px;
+  width: 50px;
+    height: 50px;
+    border: none;
+    background-color: #39a8dd;
 }
