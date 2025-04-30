@@ -1,0 +1,77 @@
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+	
+	<div class="container">
+	<h1 style="font-family: Arial; font-size: 4rem">Cookie Wall / Cookie Banner Overlay</h1>
+	<p><a href="https://ryanleonardsecuriti.github.io">Click Here to select a different banner</a></p>
+	</div>
+	
+
+<!--<script>
+	window.SecuritiDataLayer = window.SecuritiDataLayer || [];
+SecuritiDataLayer.push([
+    'onConsentGiven',
+    (sdk, consent) => {
+        const wallDiv = document.querySelector('.wall');
+        if (wallDiv) {
+            wallDiv.style.display = 'none';
+        }
+    }
+]);
+</script>-->
+	<div id="cookie-overlay"></div>
+	<script>
+	window.SecuritiDataLayer = window.SecuritiDataLayer || [];
+	window.SecuritiDataLayer.push([
+		'onLoad',
+		function(sdk) {
+		        if (sdk.isConsentGiven()) {
+				return;
+        		} else {
+				const cookieOverlayDiv = document.getElementById('cookie-overlay');
+				if (cookieOverlayDiv) {
+					cookieOverlayDiv.classList.add('cookie-overlay-active');
+	        		}
+        		}
+    		}
+	]);
+
+	window.SecuritiDataLayer.push([
+		'onConsentGiven',
+		function(sdk, consent) {
+			const cookieOverlayDiv = document.getElementById('cookie-overlay');
+			if (cookieOverlayDiv) {
+				cookieOverlayDiv.classList.remove('cookie-overlay-active');
+	        	}
+    		}
+	]);
+</script>
+
+
+<!-- After adding this script, call setConsentBannerParams({uuid: <unique id> }) to set unique ID for a customer.  -->
+<script>
+(function () {
+	var s = document.createElement('script');
+	s.src = 'https://cdn-qa.securiti.xyz/consent/cookie-consent-sdk-loader.js';
+	s.setAttribute('data-tenant-uuid', 'f262f42b-3086-44e0-b76b-589eed8b5ec8');
+	s.setAttribute('data-domain-uuid', 'a27ec99d-437e-459c-b32f-63e07844e125');
+	s.setAttribute('data-backend-url', 'https://qa.securiti.xyz');
+	s.setAttribute('data-skip-css', 'false');
+	s.defer = true;
+	var parent_node = document.head || document.body;
+	parent_node.appendChild(s);
+})()
+</script>
+
+<!-- You may style the button by overriding class "cmp-revoke-consent" -->
+<button class="cmp-revoke-consent">Manage Cookie Preferences</button>
+
+<!-- Link to external cookie.js -->
+  <script type="text/javascript" src="cookie.js"></script>
+	
+</body>
+<footer>
+</footer>
