@@ -131,7 +131,7 @@ a:hover {
     font-family: 'Indie Flower', cursive;
 }
 
-cmp-revoke-consent {
+.cmp-revoke-consent {
   padding-left: 30px; 
   background-image: url('https://xjhasojsvzxuxxklujmu.supabase.co/storage/v1/object/public/cookie//cookie.png'); /* Replace with your icon path */
   background-repeat: no-repeat;
