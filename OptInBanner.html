@@ -1,85 +1,3 @@
-<!--<head>
-  <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-	<div class="container">
-	<h1 style="font-family: Arial; font-size: 4rem">This is an Opt In bannerv2</h1>
-	<p><a href="https://ryanleonardsecuriti.github.io">Click Here to select a different banner</a></p>
-	</div>
-	<br>
-	<div class="containerOutline">
-	<h1 style="font-size: 1rem; color:white;">This is text with the default site header font</h1>
-	<p> This is text with the default site font</p>
-	</div>
-	<br>
-	<div class="container">
-	<p style="font-family: Arial">Above you will find the default page font styles.</p>
-	<p style="font-family: Arial">If you look at the banner, you can see that it inherited the default font. Any elements that did not inherit the font can use custom font/css to achieve the same goal.</p>
-	<br>
-	<p style="font-family: Arial">You can also open the preference center with a button or link. Click below to find out!</p>
-	<p><a onclick="showConsentPreferencesPopup()">Preference Center</p
-	</div>
-	
-	
-
-
-
-
-<script>
-(function () {
-	var s = document.createElement('script');
-	s.src = 'https://cdn-prod.securiti.ai/consent/cookie-consent-sdk-loader.js';
-	s.setAttribute('data-tenant-uuid', 'f849f6ee-3145-493e-a066-f4277dd87cb8');
-	s.setAttribute('data-domain-uuid', 'fa8faaa2-f491-4724-96bd-ef966cbc7ba9');
-	s.setAttribute('data-backend-url', 'https://app.securiti.ai');
-	s.setAttribute('data-skip-css', 'false');
-	s.defer = true;
-	var parent_node = document.head || document.body;
-	parent_node.appendChild(s);
-})()
-</script>
-
-	
-  <script>
-  function setTestCookie() {
-    document.cookie = "testCookie=HelloWorld; path=/; max-age=3600; secure";
-    console.log("Cookie has been set!");
-  }
-
-  function getTestCookie() {
-    let cookieValue = getCookie("testCookie");
-    if (cookieValue) {
-      console.log("Cookie value: " + cookieValue);
-    } else {
-      console.log("Cookie not found");
-    }
-  }
-
-
-  function getCookie(name) {
-    let cookieArr = document.cookie.split("; ");
-    for (let i = 0; i < cookieArr.length; i++) {
-      let cookiePair = cookieArr[i].split("=");
-      if (name === cookiePair[0]) {
-        return cookiePair[1];
-      }
-    }
-    return null;
-  }
-
-
-  window.onload = function() {
-    setTestCookie();
-    getTestCookie();
-  }
-  </script>	
-	
-</body>
-<footer>
-</footer>
--->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -258,9 +176,5 @@
         </section>
 
     </main>
-    
-    <footer>
-        <p>&copy; 2025 Simple Static Website. All Rights Reserved.</p>
-    </footer>
 </body>
 </html>
