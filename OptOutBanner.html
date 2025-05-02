@@ -1,45 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <link rel='stylesheet' type='text/css' href='https://cdn-prod.securiti.ai/consent/cookie-consent.css' />
-  <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-	<div class="container">
-	<h1 style="font-family: Arial; font-size: 4rem">This is an Opt Out banner</h1>
-	<p><a href="https://ryanleonardsecuriti.github.io">Click Here to select a different banner</a></p>
-	</div>
-	<br>
-	<div class="containerOutline">
-	<h1 style="font-size: 1rem; color:white;">This is text with the default site header font</h1>
-	<p> This is text with the default site font</p>
-	</div>
-	<br>
-	<div class="container">
-	<p style="font-family: Arial">Above you will find the default page font styles.</p>
-	<p style="font-family: Arial">If you look at the banner, you can see that it inherited the default font. Any elements that did not inherit the font can use custom font/css to achieve the same goal.</p>
-	<br>
-	<p style="font-family: Arial">You can also open the preference center with a button or link. Click below to find out!</p>
-	<p><a onclick="showConsentPreferencesPopup()">Preference Center</p
-	</div>
+	  <link rel="stylesheet" href="cookie-overlay.css">
 	
 
-<script type="text/javascript" src="https://cdn-prod.securiti.ai/consent/sdk-stub.js"></script>
+<!-- After adding this script, call setConsentBannerParams({uuid: <unique id> }) to set unique ID for a customer.  -->
 <script>
 (function () {
 	var s = document.createElement('script');
-	s.src = 'https://cdn-prod.securiti.ai/consent/cookie-consent-sdk.js';
+	s.src = 'https://cdn-prod.securiti.ai/consent/cookie-consent-sdk-loader.js';
 	s.setAttribute('data-tenant-uuid', 'f849f6ee-3145-493e-a066-f4277dd87cb8');
 	s.setAttribute('data-domain-uuid', '1627da2b-1a2f-4d20-b6d5-37aae8142959');
 	s.setAttribute('data-backend-url', 'https://app.securiti.ai');
+	s.setAttribute('data-skip-css', 'false');
 	s.defer = true;
 	var parent_node = document.head || document.body;
-        s.defer = true;
 	parent_node.appendChild(s);
-      	s.addEventListener('load', function() {
-           window.initCmp();
-       });
 })()
 </script>
+
+	
+  <script>
+  function setTestCookie() {
+    document.cookie = "testCookie=HelloWorld; path=/; max-age=3600; secure";
+    console.log("Cookie has been set!");
+  }
+
+  function getTestCookie() {
+    let cookieValue = getCookie("testCookie");
+    if (cookieValue) {
+      console.log("Cookie value: " + cookieValue);
+    } else {
+      console.log("Cookie not found");
+    }
+  }
+
+
+  function getCookie(name) {
+    let cookieArr = document.cookie.split("; ");
+    for (let i = 0; i < cookieArr.length; i++) {
+      let cookiePair = cookieArr[i].split("=");
+      if (name === cookiePair[0]) {
+        return cookiePair[1];
+      }
+    }
+    return null;
+  }
+
+
+  window.onload = function() {
+    setTestCookie();
+    getTestCookie();
+  }
+  </script>	
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opt Out Banner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        section h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            width: 100%;
+            bottom: 0;
+        }
+
+	    
+
+	    button {
+	    width: 10rem;
+    height: 2rem;
+    font-size: 10px;
+	    }
+
+	
+
+	    a {
+  color: #49ccde;
+  text-decoration: underline;
+  cursor: pointer;
+}
+    </style>
+</head>
+<body>
+<div id="cookie-overlay"></div>
+
+    <header>
+        <h1>Opt Out Banner</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="home">
+            <h2>Home Section</h2>
+            <p>This is a simple static website for demo purposes.</p><br><br>
+	<p><a onclick="showConsentPreferencesPopup()">Click here to see your Cookie Preference Center</a></p>
+	<br>
+        </section>
+        
+        <section id="about">
+            <h2>About Section</h2>
+            <p>Learn more about what this website is all about.</p>
+        </section>
+
+        
+        <section id="contact">
+            <h2>Contact Section</h2>
+            <p>If you'd like to get in touch, feel free to reach out.</p>
+        </section>
+
+    </main>
 </body>
-<footer>
-</footer>
+</html>
