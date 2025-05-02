@@ -1,4 +1,4 @@
-<head>
+<!--<head>
   <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -24,60 +24,8 @@
 	
 
 
-<!-- After adding this script, call setConsentBannerParams({uuid: <unique id> }) to set unique ID for a customer.  
-<script>
-(function () {
-	var s = document.createElement('script');
-	s.src = 'https://cdn-qa.securiti.xyz/consent/cookie-consent-sdk-loader.js';
-	s.setAttribute('data-tenant-uuid', 'b9153366-8d40-43b0-8009-e7c5f7342b6c');
-	s.setAttribute('data-domain-uuid', '55dcdf51-3b31-4a61-af55-a2bea0b0f808');
-	s.setAttribute('data-backend-url', 'https://qa.securiti.xyz');
-	s.setAttribute('data-skip-css', 'false');
-	s.defer = true;
-	var parent_node = document.head || document.body;
-	parent_node.appendChild(s);
-})()
-</script>-->
 
 
-
-	
-<!--<script>
-window.SecuritiDataLayer = window.SecuritiDataLayer || [];
-SecuritiDataLayer.push([
-    'onConfigLoad',
-    (configSdk) => {
-        console.log('Config Loaded Event Triggered');
-        if (configSdk.isConsentGiven()) {
-            console.log('User has already given consent');
-        }
-        const consentDetails = configSdk.getConsent();
-        console.log('Consent Details:', consentDetails);
-        const categories = configSdk.getCategories();
-        console.log('Cookie Categories:', categories);
-
-        // Check if "advertising" category is present
-        if (categories && Array.isArray(categories)) {
-            const advertisingCategoryExists = categories.some(category => {
-                return category && category.base_category && category.base_category.includes('Advertising');
-            });
-
-            if (!advertisingCategoryExists) {
-                console.log('The "Advertising" category is not present in the returned categories.');
-            }
-        } else {
-            console.log('Categories data is not available or is not an array.');
-        }
-
-        const bannerVersion = configSdk.getBannerVersion();
-        console.log('Banner Version:', bannerVersion);
-        const sdkVersion = configSdk.getSdkVersion();
-        console.log('SDK Version:', sdkVersion);
-    }
-]);
-</script>
-
-<!-- After adding this script, call setConsentBannerParams({uuid: <unique id> }) to set unique ID for a customer.  -->
 <script>
 (function () {
 	var s = document.createElement('script');
@@ -92,153 +40,7 @@ SecuritiDataLayer.push([
 })()
 </script>
 
-	<!--<script>
-	function buildDefaultConsentState(sdk) {
-    setTimeout(function() { // Add a 5-second delay
-        try {
-            var complianceType = 'opt-out';
-            var ops = window.__ScrtSdkApiOps;
-            if (ops && ops.ns.bannerOptions && ops.ns.bannerOptions.compliance) {
-                complianceType = ops.ns.bannerOptions.compliance;
-                console.log("Compliance Type (after delay):", complianceType);
-            } else {
-                console.log("Compliance Type (after delay): ops or ops.ns.bannerOptions.compliance is undefined");
-            }
-            var categories = sdk.getCategories();
-            var consent = { 'category': {} };
-            for (var i = 0; i < categories.length; i++) {
-                consent['category'][categories[i].name] = (complianceType === 'opt-in' && !categories[i].disable_opt_out) ? 'denied' : 'granted';
-            }
-            console.log("Consents from buildDefaultConsentState (after delay):", consent);
-            return consent;
-        } catch (e) {
-            console.error('Error (after delay):', e);
-            return {};
-        }
-    }, 2000); // 5000 milliseconds = 2 seconds
-
-    // Return an empty object initially. The real consent object will be sent after the delay.
-    return {};
-}
-
-function sendConsentGivenToDataLayer(consent) {
-    if (consent && consent['category']) {
-        var keys = Object.keys(consent['category']);
-
-        for (var i = 0; i < keys.length; i++) {
-            var category = keys[i];
-            var state = consent['category'][category];
-            dataLayer.push({
-                'event': 'consentGiven',
-                'cookieCategory': category,
-                'cookieCategoryState': state
-            });
-        }
-    } else {
-        console.log('Consent is not available, sendConsentGivenToDataLayer is failed');
-    }
-}
-
-window.SecuritiDataLayer = window.SecuritiDataLayer || [];
-
-window.SecuritiDataLayer.push([
-    'onConsentGiven',
-    function(sdk, consent) {
-        sendConsentGivenToDataLayer(consent);
-    }
-]);
-
-// This will get fired on every page load.
-window.SecuritiDataLayer.push([
-    'onLoad',
-    function(sdk) {
-        if (sdk.isConsentGiven()) {
-            sendConsentGivenToDataLayer(sdk.getConsent());
-        } else {
-            // Modify this part to send the consent after the delay.
-            setTimeout(function(){
-                sendConsentGivenToDataLayer(buildDefaultConsentState(sdk));
-            }, 2000);
-        }
-        console.log("onLoad is triggered");
-    }
-]);
-</script>-->
-
-	<script>
-window.dataLayer = window.dataLayer || [];
-function buildDefaultConsentState(sdk) {
-    function attemptBuild() {
-        try {
-            var complianceType = 'opt-out';
-            var ops = window.__ScrtSdkApiOps;
-
-            if (ops && ops.ns.bannerOptions && ops.ns.bannerOptions.compliance) {
-                complianceType = ops.ns.bannerOptions.compliance;
-                console.log("Compliance Type (retry success):", complianceType);
-
-                var categories = sdk.getCategories();
-                var consent = { 'category': {} };
-                for (var i = 0; i < categories.length; i++) {
-                    consent['category'][categories[i].name] = (complianceType === 'opt-in' && !categories[i].disable_opt_out) ? 'denied' : 'granted';
-                }
-                console.log("Consents from buildDefaultConsentState (retry success):", consent);
-                return consent;
-            } else {
-                console.log("Compliance Type (retry): ops or ops.ns.bannerOptions.compliance is undefined, retrying...");
-                setTimeout(attemptBuild, 100); // Retry after 100 milliseconds
-                return {}; 
-            }
-        } catch (e) {
-            console.error('Error', e);
-            return {};
-        }
-    }
-
-    return attemptBuild(); // Start the first attempt
-}
-
-function sendConsentGivenToDataLayer(consent) {
-    if (consent && consent['category']) {
-        var keys = Object.keys(consent['category']);
-
-        for (var i = 0; i < keys.length; i++) {
-            var category = keys[i];
-            var state = consent['category'][category];
-            dataLayer.push({
-                'event': 'consentGiven',
-                'cookieCategory': category,
-                'cookieCategoryState': state
-            });
-        }
-    } else {
-        console.log('Consent is not available, sendConsentGivenToDataLayer is failed');
-    }
-}
-
-window.SecuritiDataLayer = window.SecuritiDataLayer || [];
-
-window.SecuritiDataLayer.push([
-    'onConsentGiven',
-    function(sdk, consent) {
-        sendConsentGivenToDataLayer(consent);
-    }
-]);
-
-// This will get fired on every page load.
-window.SecuritiDataLayer.push([
-    'onLoad',
-    function(sdk) {
-        if (sdk.isConsentGiven()) {
-            sendConsentGivenToDataLayer(sdk.getConsent())
-        } else {
-            sendConsentGivenToDataLayer(buildDefaultConsentState(sdk))
-        }
-    }
-]);
-	</script>
-
-
+	
   <script>
   function setTestCookie() {
     document.cookie = "testCookie=HelloWorld; path=/; max-age=3600; secure";
@@ -276,3 +78,189 @@ window.SecuritiDataLayer.push([
 </body>
 <footer>
 </footer>
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	  <link rel="stylesheet" href="cookie-overlay.css">
+	
+<!-- After adding this script, call setConsentBannerParams({uuid: <unique id> }) to set unique ID for a customer.  -->
+<script>
+(function () {
+	var s = document.createElement('script');
+	s.src = 'https://cdn-prod.securiti.ai/consent/cookie-consent-sdk-loader.js';
+	s.setAttribute('data-tenant-uuid', 'f849f6ee-3145-493e-a066-f4277dd87cb8');
+	s.setAttribute('data-domain-uuid', 'fa8faaa2-f491-4724-96bd-ef966cbc7ba9');
+	s.setAttribute('data-backend-url', 'https://app.securiti.ai');
+	s.setAttribute('data-skip-css', 'false');
+	s.defer = true;
+	var parent_node = document.head || document.body;
+	parent_node.appendChild(s);
+})()
+</script>
+
+	
+  <script>
+  function setTestCookie() {
+    document.cookie = "testCookie=HelloWorld; path=/; max-age=3600; secure";
+    console.log("Cookie has been set!");
+  }
+
+  function getTestCookie() {
+    let cookieValue = getCookie("testCookie");
+    if (cookieValue) {
+      console.log("Cookie value: " + cookieValue);
+    } else {
+      console.log("Cookie not found");
+    }
+  }
+
+
+  function getCookie(name) {
+    let cookieArr = document.cookie.split("; ");
+    for (let i = 0; i < cookieArr.length; i++) {
+      let cookiePair = cookieArr[i].split("=");
+      if (name === cookiePair[0]) {
+        return cookiePair[1];
+      }
+    }
+    return null;
+  }
+
+
+  window.onload = function() {
+    setTestCookie();
+    getTestCookie();
+  }
+  </script>	
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opt In Banner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        section h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            width: 100%;
+            bottom: 0;
+        }
+
+	    
+
+	    button {
+	    width: 10rem;
+    height: 2rem;
+    font-size: 10px;
+	    }
+
+	
+
+	    a {
+  color: #49ccde;
+  text-decoration: underline;
+  cursor: pointer;
+}
+    </style>
+</head>
+<body>
+<div id="cookie-overlay"></div>
+
+    <header>
+        <h1>Opt In Banner</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="home">
+            <h2>Home Section</h2>
+            <p>This is a simple static website for demo purposes.</p><br><br>
+	<p><a onclick="showConsentPreferencesPopup()">Click here to see your Cookie Preference Center</a></p>
+	<br>
+        </section>
+        
+        <section id="about">
+            <h2>About Section</h2>
+            <p>Learn more about what this website is all about.</p>
+        </section>
+
+        
+        <section id="contact">
+            <h2>Contact Section</h2>
+            <p>If you'd like to get in touch, feel free to reach out.</p>
+        </section>
+
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Simple Static Website. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
