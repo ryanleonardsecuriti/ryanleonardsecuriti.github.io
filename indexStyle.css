@@ -58,9 +58,9 @@ a:hover {
 
 .boxIndex {
   position: relative;
-  background-color: #2a99a8; 
+  background-color: #39A8DD; 
   outline-color: Black;
-  outline-style: double;
+  outline-style: auto;
   border: 1px White;
 }
 
