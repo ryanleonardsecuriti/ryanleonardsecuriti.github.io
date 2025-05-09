@@ -28,6 +28,55 @@
     		}
 	]);
 </script>
+
+	<script>
+function sendConsentGivenToDataLayer(consent) {
+    if (consent && consent['category']) {
+        var keys = Object.keys(consent['category']);
+
+        for (var i = 0; i < keys.length; i++) {
+            var category = keys[i];
+            var state = consent['category'][category];
+            dataLayer.push({
+                'event': 'consentGiven',
+                'cookieCategory': category,
+                'cookieCategoryState': state
+            });
+        }
+    } else {
+        console.log('Consent is not available, sendConsentGivenToDataLayer failed', consent);
+    }
+}
+
+window.SecuritiDataLayer = window.SecuritiDataLayer || [];
+var alreadySentOnInit = false;
+
+// Triggered when the user gives consent
+window.SecuritiDataLayer.push([
+    'onConsentGiven',
+    function(sdk, consent) {
+        alreadySentOnInit = true;
+        sendConsentGivenToDataLayer(consent);
+    }
+]);
+
+// Triggered on every page load
+window.SecuritiDataLayer.push([
+    'onLoad',
+    function(sdk) {
+        if (alreadySentOnInit) {
+            return; // Already handled
+        }
+        alreadySentOnInit = true;
+
+        const consent = sdk.isConsentGiven()
+            ? sdk.getConsent()
+            : sdk.getDefaultConsentState(); // Send default state if no consent yet
+
+        sendConsentGivenToDataLayer(consent);
+    }
+]);
+</script>
 <!-- After adding this script, call setConsentBannerParams({uuid: <unique id> }) to set unique ID for a customer.  -->
 <script>
 (function () {
