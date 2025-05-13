@@ -25,7 +25,7 @@
 	
 
 	<script>
-		(function () {
+(function () {
     /* Additional scripts provided by Securiti */
 
     /**
@@ -75,34 +75,20 @@
      */
     function sendConsentGivenToDataLayer(consent) {
         if (consent && consent.category) {
-          var consent = sdk.getConsent(); // Replaced let with var
-
-          var cookieCategoryGranted = []; // Replaced let with var
-          var cookieCategoryDenied = [];  // Replaced let with var
-        
-          if (consent && consent.category) {
-            for (var categoryName in consent.category) { // Replaced const and let with var
-              if (consent.category.hasOwnProperty(categoryName)) {
-                var consentStatus = consent.category[categoryName]; // Replaced const and let with var
-                if (consentStatus === "granted") {
-                  cookieCategoryGranted.push(categoryName);
-                } else if (consentStatus === "denied") {
-                  cookieCategoryDenied.push(categoryName);
+            var keys = Object.keys(consent.category);
+            for (var i = 0; i < keys.length; i++) {
+                var category = keys[i];
+                var state = consent.category[category];
+                if (window.gtmDataLayer) { // Check if gtmDataLayer exists.
+                    window.gtmDataLayer.push({
+                        event: 'consentGiven',
+                        cookieCategory: category,
+                        cookieCategoryState: state,
+                    });
+                } else {
+                   console.warn('gtmDataLayer is not defined.  Consent data not sent to GTM.');
                 }
-              }
             }
-          }
-        
-          console.log("Granted Categories:", cookieCategoryGranted);
-          console.log("Denied Categories:", cookieCategoryDenied);
-        
-          window.testDataLayer = window.testDataLayer || [];
-        
-          gtmDataLayer.push({
-            'event': 'consentGivenTest',
-            'cookieCategoryGranted': cookieCategoryGranted,
-            'cookieCategoryDenied': cookieCategoryDenied
-          });
         } else {
             console.log('Consent is not available, sendConsentGivenToDataLayer failed.');
         }
@@ -135,8 +121,7 @@
     var parentNode = document.head || document.body;
     parentNode.appendChild(script);
 })();
-
-	</script>
+</script>
 
 
     
