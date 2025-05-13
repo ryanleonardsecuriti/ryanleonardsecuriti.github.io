@@ -15,153 +15,87 @@
 	<br>
 	<div class="container">
 	<p style="font-family: Arial">Preference center link below!</p>
-	<p><a onclick="showConsentPreferencesPopup()">Preference Center</p
+	<p><a onclick="showConsentPreferencesPopup()">Preference Center</p>
 	</div>
-	<script>
+	
+    <script>
 		    window.gtmDataLayer = window.gtmDataLayer || [];
-
 	</script>
 
-	
-
-	<script>
-(function () {
-    /* Additional scripts provided by Securiti */
-
-    /**
-     * Builds the default consent state.  Handles retries if necessary.
-     * @param {object} sdk - The Securiti SDK instance.
-     * @returns {object} - The default consent state object.
-     */
+    <script>
+         window.dataLayer = window.dataLayer || [];
     function buildDefaultConsentState(sdk) {
         function attemptBuild() {
             try {
                 var complianceType = 'opt-out';
                 var ops = window.__ScrtSdkApiOps;
 
-                if (ops && ops.ns && ops.ns.bannerOptions && ops.ns.bannerOptions.compliance) {
+                if (ops && ops.ns.bannerOptions && ops.ns.bannerOptions.compliance) {
                     complianceType = ops.ns.bannerOptions.compliance;
-                    console.log('Compliance Type (retry success):', complianceType);
+                    console.log("Compliance Type (retry success):", complianceType);
 
                     var categories = sdk.getCategories();
-                    var consent = { category: {} };
-
+                    var consent = { 'category': {} };
                     for (var i = 0; i < categories.length; i++) {
-                        consent['category'][categories[i].name] =
-                            complianceType === 'opt-in' && !categories[i].disable_opt_out
-                                ? 'denied'
-                                : 'granted';
+                        consent['category'][categories[i].name] = (complianceType === 'opt-in' && !categories[i].disable_opt_out) ? 'denied' : 'granted';
                     }
-
-                    console.log('Consents from buildDefaultConsentState (retry success):', consent);
+                    console.log("Consents from buildDefaultConsentState (retry success):", consent);
                     return consent;
                 } else {
-                    console.log('Compliance Type (retry): ops or ops.ns.bannerOptions.compliance is undefined, retrying...');
-                    setTimeout(attemptBuild, 100); /* Retry after 100 milliseconds */
-                    return {}; // Important: Return an empty object to avoid errors in initial calls.
+                    console.log("Compliance Type (retry): ops or ops.ns.bannerOptions.compliance is undefined, retrying...");
+                    setTimeout(attemptBuild, 100); // Retry after 100 milliseconds
+                    return {};
                 }
             } catch (e) {
-                console.error('Error in attemptBuild:', e);
-                return {}; // Important:  Return an empty object on error.
+                console.error('Error', e);
+                return {};
             }
         }
 
-        return attemptBuild(); /* Start the first attempt */
-    }
-
-function testNewGtm(sdk) {
-  var consent = sdk.getConsent(); // Replaced let with var
-
-  var cookieCategoryGranted = []; // Replaced let with var
-  var cookieCategoryDenied = [];  // Replaced let with var
-
-  if (consent && consent.category) {
-    for (var categoryName in consent.category) { // Replaced const and let with var
-      if (consent.category.hasOwnProperty(categoryName)) {
-        var consentStatus = consent.category[categoryName]; // Replaced const and let with var
-        if (consentStatus === "granted") {
-          cookieCategoryGranted.push(categoryName);
-        } else if (consentStatus === "denied") {
-          cookieCategoryDenied.push(categoryName);
-        }
-      }
-    }
-  }
-
-  console.log("Granted Categories:", cookieCategoryGranted);
-  console.log("Denied Categories:", cookieCategoryDenied);
-
-  window.gtmDataLayer = window.gtmDataLayer || [];
-
-  gtmDataLayer.push({
-    'event': 'consentGivenTest',
-    'cookieCategoryGranted': cookieCategoryGranted,
-    'cookieCategoryDenied': cookieCategoryDenied
-  });
+    return attemptBuild(); // Start the first attempt
 }
-    /**
-     * Sends consent data to the Google Tag Manager dataLayer.
-     * @param {object} consent - The consent data object.
-     */
+
     function sendConsentGivenToDataLayer(consent) {
-        if (consent && consent.category) {
-            var keys = Object.keys(consent.category);
-            for (var i = 0; i < keys.length; i++) {
-                var category = keys[i];
-                var state = consent.category[category];
-                if (window.gtmDataLayer) { // Check if gtmDataLayer exists.
-                    window.gtmDataLayer.push({
-                        event: 'consentGiven',
-                        cookieCategory: category,
-                        cookieCategoryState: state,
-                    });
-                } else {
-                   console.warn('gtmDataLayer is not defined.  Consent data not sent to GTM.');
-                }
-            }
-        } else {
-            console.log('Consent is not available, sendConsentGivenToDataLayer failed.');
+    if (consent && consent['category']) {
+        var keys = Object.keys(consent['category']);
+
+    for (var i = 0; i < keys.length; i++) {
+            var category = keys[i];
+    var state = consent['category'][category];
+    dataLayer.push({
+        'event': 'consentGiven',
+    'cookieCategory': category,
+    'cookieCategoryState': state
+            });
         }
+    } else {
+        console.log('Consent is not available, sendConsentGivenToDataLayer is failed');
     }
+}
 
-  
-
-
-    // Initialize SecuritiDataLayer if it doesn't exist
     window.SecuritiDataLayer = window.SecuritiDataLayer || [];
 
-    // Push commands to SecuritiDataLayer
-    window.SecuritiDataLayer.push(['beforeLoad', bareSdk => bareSdk.enableSPA()]);
-    window.SecuritiDataLayer.push(['onConsentGiven', function (sdk, consent) {
+    window.SecuritiDataLayer.push([
+    'onConsentGiven',
+    function(sdk, consent) {
         sendConsentGivenToDataLayer(consent);
-    }]);
-    window.SecuritiDataLayer.push(['onLoad', function (sdk) {
+    }
+    ]);
+
+    // This will get fired on every page load.
+    window.SecuritiDataLayer.push([
+    'onLoad',
+    function(sdk) {
         if (sdk.isConsentGiven()) {
-            sendConsentGivenToDataLayer(sdk.getConsent());
-        } else {
-            sendConsentGivenToDataLayer(buildDefaultConsentState(sdk));
-	    testNewGtm(sdk);
-        }
-    }]);
-
-</script>
-	
-<!-- After adding this script, call setConsentBannerParams({uuid: <unique id> }) to set unique ID for a customer.  -->
-<script>
-(function () {
-	var s = document.createElement('script');
-	s.src = 'https://cdn-prod.securiti.ai/consent/cookie-consent-sdk-loader.js';
-	s.setAttribute('data-tenant-uuid', 'f849f6ee-3145-493e-a066-f4277dd87cb8');
-	s.setAttribute('data-domain-uuid', '1627da2b-1a2f-4d20-b6d5-37aae8142959');
-	s.setAttribute('data-backend-url', 'https://app.securiti.ai');
-	s.setAttribute('data-skip-css', 'false');
-	s.defer = true;
-	var parent_node = document.head || document.body;
-	parent_node.appendChild(s);
-})()
-</script>
-
-
+        sendConsentGivenToDataLayer(sdk.getConsent())
+    } else {
+        sendConsentGivenToDataLayer(buildDefaultConsentState(sdk))
+    }
+    }
+    ]);
+   
+    </script>
+    
     
 	
 </body>
