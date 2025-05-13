@@ -94,6 +94,37 @@
         }
     }
 
+	SecuritiSDK.onReady(function(sdk) { // Replaced arrow function with a regular function
+  var consent = sdk.getConsent(); // Replaced let with var
+
+  var cookieCategoryGranted = []; // Replaced let with var
+  var cookieCategoryDenied = [];  // Replaced let with var
+
+  if (consent && consent.category) {
+    for (var categoryName in consent.category) { // Replaced const and let with var
+      if (consent.category.hasOwnProperty(categoryName)) {
+        var consentStatus = consent.category[categoryName]; // Replaced const and let with var
+        if (consentStatus === "granted") {
+          cookieCategoryGranted.push(categoryName);
+        } else if (consentStatus === "denied") {
+          cookieCategoryDenied.push(categoryName);
+        }
+      }
+    }
+  }
+
+  console.log("Granted Categories:", cookieCategoryGranted);
+  console.log("Denied Categories:", cookieCategoryDenied);
+
+  window.gtmDataLayer = window.gtmDataLayer || [];
+
+  gtmDataLayer.push({
+    'event': 'consentGivenTest',
+    'cookieCategoryGranted': cookieCategoryGranted,
+    'cookieCategoryDenied': cookieCategoryDenied
+  });
+});
+
     // Initialize SecuritiDataLayer if it doesn't exist
     window.SecuritiDataLayer = window.SecuritiDataLayer || [];
 
