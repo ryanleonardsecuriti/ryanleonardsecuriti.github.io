@@ -23,22 +23,22 @@
       </script>
   
       <script>
-      /* Additional scripts provided by Securiti */
-   function sendConsentGivenToDataLayer(consent) {
+     /* Additional scripts provided by Securiti */
+function sendConsentGivenToDataLayer(consent) {
     let cookieCategoryGranted = [];
     let cookieCategoryDenied = [];
 
     if (consent && consent.category) {
-     for (let categoryName in consent.category) {
-      if (consent.category.hasOwnProperty(categoryName)) {
-       let consentStatus = consent.category[categoryName];
-       if (consentStatus === 'granted') {
-        cookieCategoryGranted.push(categoryName);
-       } else if (consentStatus === 'denied') {
-        cookieCategoryDenied.push(categoryName);
-       }
-      }
-     }
+        for (let categoryName in consent.category) {
+            if (consent.category.hasOwnProperty(categoryName)) {
+                let consentStatus = consent.category[categoryName];
+                if (consentStatus === 'granted') {
+                    cookieCategoryGranted.push(categoryName);
+                } else if (consentStatus === 'denied') {
+                    cookieCategoryDenied.push(categoryName);
+                }
+            }
+        }
     }
 
     console.log('Granted Categories:', cookieCategoryGranted);
@@ -47,69 +47,41 @@
     window.gtmDataLayer = window.gtmDataLayer || [];
 
     gtmDataLayer.push({
-     event: 'consentGiven',
-     cookieCategoryGranted,
-     cookieCategoryDenied
+        event: 'consentGiven',
+        cookieCategoryGranted,
+        cookieCategoryDenied
     });
-   }
+}
 
-   function getDefaultCategoryStates(consent) {
-    let defaultGranted = [];
-    let defaultDenied = [];
+window.SecuritiDataLayer = window.SecuritiDataLayer || [];
 
-    if (consent && consent.category) {
-     for (let categoryName in consent.category) {
-      if (consent.category.hasOwnProperty(categoryName)) {
-       let consentStatus = consent.category[categoryName];
-       if (consentStatus === 'granted') {
-        defaultGranted.push(categoryName);
-       } else if (consentStatus === 'denied') {
-        defaultDenied.push(categoryName);
-       }
-      }
-     }
-    }
-
-    console.log('Default Granted Categories:', defaultGranted);
-    console.log('Default Denied Categories:', defaultDenied);
-
-    window.gtmDataLayer = window.gtmDataLayer || [];
-
-    gtmDataLayer.push({
-     event: 'BannerDefaultStateNoConsentGiven',
-     defaultGranted,
-     defaultDenied
-    });
-   }
-
-   window.SecuritiDataLayer = window.SecuritiDataLayer || [];
-
-   window.SecuritiDataLayer.push([ 'beforeLoad', bareSdk => bareSdk.enableSPA() ]);
+window.SecuritiDataLayer.push(['beforeLoad', bareSdk => bareSdk.enableSPA()]);
 
 
-   /* This will get fired on every page load. */
-   window.SecuritiDataLayer.push([
+/* This will get fired on every page load. */
+window.SecuritiDataLayer.push([
     'onLoad',
     function (sdk) {
-     if (sdk.isConsentGiven()) {
-      console.log('onLoad: Consent given:', sdk.getConsent());
-      sendConsentGivenToDataLayer(sdk.getConsent());
-     } else {
-       console.log('onLoad: Consent not given yet.');
-       getDefaultCategoryStates(sdk.getDefaultConsentState());
-     }
+        if (sdk.isConsentGiven()) {
+            console.log('onLoad: Consent given:', sdk.getConsent());
+            sendConsentGivenToDataLayer(sdk.getConsent());
+        } else {
+            console.log('onLoad: Consent not given yet.');
+            sendConsentGivenToDataLayer(sdk.getDefaultConsentState());
+        }
     }
-   ]);
+]);
 
-    window.SecuritiDataLayer.push([
+window.SecuritiDataLayer.push([
     'onConsentGiven',
     function (sdk, consent) {
-     console.log('onConsentGiven:', consent);
-     sendConsentGivenToDataLayer(consent);
+        console.log('onConsentGiven:', consent);
+        sendConsentGivenToDataLayer(consent);
     }
-   ]);
+]);
 
-   
+
+
       </script>
       
   
