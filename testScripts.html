@@ -94,7 +94,6 @@
         }
     }
 
-	SecuritiSDK.onReady(function(sdk) { // Replaced arrow function with a regular function
   var consent = sdk.getConsent(); // Replaced let with var
 
   var cookieCategoryGranted = []; // Replaced let with var
@@ -116,14 +115,12 @@
   console.log("Granted Categories:", cookieCategoryGranted);
   console.log("Denied Categories:", cookieCategoryDenied);
 
-  window.gtmDataLayer = window.gtmDataLayer || [];
-
   gtmDataLayer.push({
     'event': 'consentGivenTest',
     'cookieCategoryGranted': cookieCategoryGranted,
     'cookieCategoryDenied': cookieCategoryDenied
   });
-});
+
 
     // Initialize SecuritiDataLayer if it doesn't exist
     window.SecuritiDataLayer = window.SecuritiDataLayer || [];
