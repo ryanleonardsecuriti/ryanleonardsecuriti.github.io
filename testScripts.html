@@ -53,6 +53,35 @@
     });
    }
 
+   function getDefaultCategoryStates(consent) {
+    let defaultGranted = [];
+    let defaultDenied = [];
+
+    if (consent && consent.category) {
+     for (let categoryName in consent.category) {
+      if (consent.category.hasOwnProperty(categoryName)) {
+       let consentStatus = consent.category[categoryName];
+       if (consentStatus === 'granted') {
+        defaultGranted.push(categoryName);
+       } else if (consentStatus === 'denied') {
+        defaultDenied.push(categoryName);
+       }
+      }
+     }
+    }
+
+    console.log('Granted Categories:', defaultGranted);
+    console.log('Denied Categories:', defaultDenied);
+
+    window.gtmDataLayer = window.gtmDataLayer || [];
+
+    gtmDataLayer.push({
+     event: 'BannerDefaultStateNoConsentGiven',
+     defaultGranted,
+     defaultDenied
+    });
+   }
+
    window.SecuritiDataLayer = window.SecuritiDataLayer || [];
 
    window.SecuritiDataLayer.push([ 'beforeLoad', bareSdk => bareSdk.enableSPA() ]);
@@ -67,8 +96,16 @@
       sendConsentGivenToDataLayer(sdk.getConsent());
      } else {
        console.log('onLoad: Consent not given yet.');
-      sendConsentGivenToDataLayer(sdk.getDefaultConsentState());
+       getDefaultCategoryStates(sdk.getDefaultConsentState());
      }
+    }
+   ]);
+
+    window.SecuritiDataLayer.push([
+    'onConsentGiven',
+    function (sdk, consent) {
+     console.log('onConsentGiven:', consent);
+     sendConsentGivenToDataLayer(consent);
     }
    ]);
 
