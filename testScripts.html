@@ -56,52 +56,8 @@
 }
 
     function sendConsentGivenToDataLayer(consent) {
-    if (consent && consent['category']) {
-        var keys = Object.keys(consent['category']);
-
-    for (var i = 0; i < keys.length; i++) {
-            var category = keys[i];
-    var state = consent['category'][category];
-    dataLayer.push({
-        'event': 'consentGiven',
-    'cookieCategory': category,
-    'cookieCategoryState': state
-            });
-        }
-    } else {
-        console.log('Consent is not available, sendConsentGivenToDataLayer is failed');
-    }
-}
-
-    window.SecuritiDataLayer = window.SecuritiDataLayer || [];
-
-    window.SecuritiDataLayer.push([
-    'onConsentGiven',
-    function(sdk, consent) {
-        sendConsentGivenToDataLayer(consent);
-    }
-    ]);
-
-    // This will get fired on every page load.
-    window.SecuritiDataLayer.push([
-    'onLoad',
-    function(sdk) {
-        if (sdk.isConsentGiven()) {
-        sendConsentGivenToDataLayer(sdk.getConsent())
-    } else {
-        sendConsentGivenToDataLayer(buildDefaultConsentState(sdk))
-    }
-    }
-    ]);
-   
-    </script>
-    
-<script>
-  SecuritiSDK.onReady(function(sdk) { // Replaced arrow function with a regular function
-  var consent = sdk.getConsent(); // Replaced let with var
-
-  var cookieCategoryGranted = []; // Replaced let with var
-  var cookieCategoryDenied = [];  // Replaced let with var
+    var cookieCategoryGranted = []; // Replaced let with var
+    var cookieCategoryDenied = [];  // Replaced let with var
 
   if (consent && consent.category) {
     for (var categoryName in consent.category) { // Replaced const and let with var
@@ -127,7 +83,32 @@
     'cookieCategoryDenied': cookieCategoryDenied
   });
 });
-</script>
+}
+
+    window.SecuritiDataLayer = window.SecuritiDataLayer || [];
+
+    window.SecuritiDataLayer.push([
+    'onConsentGiven',
+    function(sdk, consent) {
+        sendConsentGivenToDataLayer(consent);
+    }
+    ]);
+
+    // This will get fired on every page load.
+    window.SecuritiDataLayer.push([
+    'onLoad',
+    function(sdk) {
+        if (sdk.isConsentGiven()) {
+        sendConsentGivenToDataLayer(sdk.getConsent())
+    } else {
+        sendConsentGivenToDataLayer(buildDefaultConsentState(sdk))
+    }
+    }
+    ]);
+   
+    </script>
+    
+
 
 	
 <!-- After adding this script, call setConsentBannerParams({uuid: <unique id> }) to set unique ID for a customer.  -->
