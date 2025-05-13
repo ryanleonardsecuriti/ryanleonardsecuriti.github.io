@@ -144,17 +144,21 @@ function testNewGtm(sdk) {
         }
     }]);
 
-    /* Load the Securiti SDK */
-    var script = document.createElement('script');
-    script.src = 'https://cdn-prod.securiti.ai/consent/cookie-consent-sdk-loader.js';
-    script.setAttribute('data-tenant-uuid', 'f849f6ee-3145-493e-a066-f4277dd87cb8');
-    script.setAttribute('data-domain-uuid', 'fa8faaa2-f491-4724-96bd-ef966cbc7ba9');
-    script.setAttribute('data-backend-url', 'https://app.securiti.ai');
-    script.setAttribute('data-skip-css', 'false');
-    script.defer = true; // Use defer for non-blocking loading
-    var parentNode = document.head || document.body;
-    parentNode.appendChild(script);
-})();
+</script>
+	
+<!-- After adding this script, call setConsentBannerParams({uuid: <unique id> }) to set unique ID for a customer.  -->
+<script>
+(function () {
+	var s = document.createElement('script');
+	s.src = 'https://cdn-prod.securiti.ai/consent/cookie-consent-sdk-loader.js';
+	s.setAttribute('data-tenant-uuid', 'f849f6ee-3145-493e-a066-f4277dd87cb8');
+	s.setAttribute('data-domain-uuid', '1627da2b-1a2f-4d20-b6d5-37aae8142959');
+	s.setAttribute('data-backend-url', 'https://app.securiti.ai');
+	s.setAttribute('data-skip-css', 'false');
+	s.defer = true;
+	var parent_node = document.head || document.body;
+	parent_node.appendChild(s);
+})()
 </script>
 
 
