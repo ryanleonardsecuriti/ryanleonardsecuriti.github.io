@@ -1,131 +1,112 @@
 <head>
-  <link rel='stylesheet' type='text/css' href='https://cdn-prod.securiti.ai/consent/cookie-consent.css' />
-  <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster" rel="stylesheet">
-  <link rel="stylesheet" href="testScripts.css">
-</head>
-<body>
-	<div class="container">
-	<h1 style="font-family: Arial; font-size: 4rem">This is an Opt In banner with test scripts</h1>
-	<p><a href="https://ryanleonardsecuriti.github.io">Click Here to select a different banner</a></p>
-	</div>
-	<br>
-	<div class="container">
-	<p>This is where we will test adding a custom event listener to enable or disable certain scripts based on banner consent status</p>	
-	</div>
-	<br>
-	<div class="container">
-	<p style="font-family: Arial">Preference center link below!</p>
-	<p><a onclick="showConsentPreferencesPopup()">Preference Center</p>
-	</div>
-	
-    <script>
-		    window.gtmDataLayer = window.gtmDataLayer || [];
-	</script>
+    <link rel='stylesheet' type='text/css' href='https://cdn-prod.securiti.ai/consent/cookie-consent.css' />
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster" rel="stylesheet">
+    <link rel="stylesheet" href="testScripts.css">
+  </head>
+  <body>
+      <div class="container">
+      <h1 style="font-family: Arial; font-size: 4rem">This is an Opt In banner with test scripts</h1>
+      <p><a href="https://ryanleonardsecuriti.github.io">Click Here to select a different banner</a></p>
+      </div>
+      <br>
+      <div class="container">
+      <p>This is where we will test adding a custom event listener to enable or disable certain scripts based on banner consent status</p>	
+      </div>
+      <br>
+      <div class="container">
+      <p style="font-family: Arial">Preference center link below!</p>
+      <p><a onclick="showConsentPreferencesPopup()">Preference Center</p>
+      </div>
+      
+      <script>
+              window.gtmDataLayer = window.gtmDataLayer || [];
+      </script>
+  
+      <script>
+      /* Additional scripts provided by Securiti */
+   function sendConsentGivenToDataLayer(consent) {
+    let cookieCategoryGranted = [];
+    let cookieCategoryDenied = [];
 
-    <script>
-         window.dataLayer = window.dataLayer || [];
-    function buildDefaultConsentState(sdk) {
-        function attemptBuild() {
-            try {
-                var complianceType = 'opt-out';
-                var ops = window.__ScrtSdkApiOps;
-
-                if (ops && ops.ns.bannerOptions && ops.ns.bannerOptions.compliance) {
-                    complianceType = ops.ns.bannerOptions.compliance;
-                    console.log("Compliance Type (retry success):", complianceType);
-
-                    var categories = sdk.getCategories();
-                    var consent = { 'category': {} };
-                    for (var i = 0; i < categories.length; i++) {
-                        consent['category'][categories[i].name] = (complianceType === 'opt-in' && !categories[i].disable_opt_out) ? 'denied' : 'granted';
-                    }
-                    console.log("Consents from buildDefaultConsentState (retry success):", consent);
-                    return consent;
-                } else {
-                    console.log("Compliance Type (retry): ops or ops.ns.bannerOptions.compliance is undefined, retrying...");
-                    setTimeout(attemptBuild, 100); // Retry after 100 milliseconds
-                    return {};
-                }
-            } catch (e) {
-                console.error('Error', e);
-                return {};
-            }
-        }
-
-    return attemptBuild(); // Start the first attempt
-}
-
-    function sendConsentGivenToDataLayer(consent) {
-    var cookieCategoryGranted = []; // Replaced let with var
-    var cookieCategoryDenied = [];  // Replaced let with var
-
-  if (consent && consent.category) {
-    for (var categoryName in consent.category) { // Replaced const and let with var
+    if (consent && consent.category) {
+     for (let categoryName in consent.category) {
       if (consent.category.hasOwnProperty(categoryName)) {
-        var consentStatus = consent.category[categoryName]; // Replaced const and let with var
-        if (consentStatus === "granted") {
-          cookieCategoryGranted.push(categoryName);
-        } else if (consentStatus === "denied") {
-          cookieCategoryDenied.push(categoryName);
-        }
+       let consentStatus = consent.category[categoryName];
+       if (consentStatus === 'granted') {
+        cookieCategoryGranted.push(categoryName);
+       } else if (consentStatus === 'denied') {
+        cookieCategoryDenied.push(categoryName);
+       }
       }
+     }
     }
-  }
 
-  console.log("Granted Categories:", cookieCategoryGranted);
-  console.log("Denied Categories:", cookieCategoryDenied);
+    console.log('Granted Categories:', cookieCategoryGranted);
+    console.log('Denied Categories:', cookieCategoryDenied);
 
-  window.gtmDataLayer = window.gtmDataLayer || [];
+    window.gtmDataLayer = window.gtmDataLayer || [];
 
-  gtmDataLayer.push({
-    'event': 'consentGivenTest',
-    'cookieCategoryGranted': cookieCategoryGranted,
-    'cookieCategoryDenied': cookieCategoryDenied
-  });
-});
-}
+    gtmDataLayer.push({
+     event: 'consentGiven',
+     cookieCategoryGranted,
+     cookieCategoryDenied
+    });
+   }
 
-    window.SecuritiDataLayer = window.SecuritiDataLayer || [];
+   window.SecuritiDataLayer = window.SecuritiDataLayer || [];
 
-    window.SecuritiDataLayer.push([
+   window.SecuritiDataLayer.push([ 'beforeLoad', bareSdk => bareSdk.enableSPA() ]);
+
+   window.SecuritiDataLayer.push([
     'onConsentGiven',
-    function(sdk, consent) {
-        sendConsentGivenToDataLayer(consent);
+    function (sdk, consent) {
+     console.log('onConsentGiven:', consent);
+     sendConsentGivenToDataLayer(consent);
     }
-    ]);
+   ]);
 
-    // This will get fired on every page load.
-    window.SecuritiDataLayer.push([
+   /* This will get fired on every page load. */
+   window.SecuritiDataLayer.push([
     'onLoad',
-    function(sdk) {
-        if (sdk.isConsentGiven()) {
-        sendConsentGivenToDataLayer(sdk.getConsent())
-    } else {
-        sendConsentGivenToDataLayer(buildDefaultConsentState(sdk))
+    function (sdk) {
+     if (sdk.isConsentGiven()) {
+      console.log('onLoad: Consent given:', sdk.getConsent());
+      sendConsentGivenToDataLayer(sdk.getConsent());
+     } else {
+       console.log('onLoad: Consent not given yet.');
+      sendConsentGivenToDataLayer(sdk.getDefaultConsentState());
+     }
     }
+   ]);
+
+   window.SecuritiDataLayer.push([
+    'onImplicitConsent',
+    (sdk) => {
+     sendConsentGivenToDataLayer(sdk.getConsent());
+	    console.log("sent implicit consent");
     }
-    ]);
-   
-    </script>
-    
-
-
-	
-<!-- After adding this script, call setConsentBannerParams({uuid: <unique id> }) to set unique ID for a customer.  -->
-<script>
-(function () {
-	var s = document.createElement('script');
-	s.src = 'https://cdn-prod.securiti.ai/consent/cookie-consent-sdk-loader.js';
-	s.setAttribute('data-tenant-uuid', 'f849f6ee-3145-493e-a066-f4277dd87cb8');
-	s.setAttribute('data-domain-uuid', 'fa8faaa2-f491-4724-96bd-ef966cbc7ba9');
-	s.setAttribute('data-backend-url', 'https://app.securiti.ai');
-	s.setAttribute('data-skip-css', 'false');
-	s.defer = true;
-	var parent_node = document.head || document.body;
-	parent_node.appendChild(s);
-})()
-</script>
-	
-</body>
-<footer>
-</footer>
+   ]);
+      </script>
+      
+  
+  
+      
+  <!-- After adding this script, call setConsentBannerParams({uuid: <unique id> }) to set unique ID for a customer.  -->
+  <script>
+  (function () {
+      var s = document.createElement('script');
+      s.src = 'https://cdn-prod.securiti.ai/consent/cookie-consent-sdk-loader.js';
+      s.setAttribute('data-tenant-uuid', 'f849f6ee-3145-493e-a066-f4277dd87cb8');
+      s.setAttribute('data-domain-uuid', 'fa8faaa2-f491-4724-96bd-ef966cbc7ba9');
+      s.setAttribute('data-backend-url', 'https://app.securiti.ai');
+      s.setAttribute('data-skip-css', 'false');
+      s.defer = true;
+      var parent_node = document.head || document.body;
+      parent_node.appendChild(s);
+  })()
+  </script>
+      
+  </body>
+  <footer>
+  </footer>
+  
