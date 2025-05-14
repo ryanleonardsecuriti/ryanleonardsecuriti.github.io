@@ -102,6 +102,17 @@ window.SecuritiDataLayer.push([
   })()
   </script>
       
+                                <script src='https://cdn-prod.securiti.ai/consent/form-consent-sdk.js'></script>
+                                <script>window.addEventListener('load', function() {
+    FormConsentSDK.initialize({
+        codeGenMetadata:{"formPropertyId":"5","formSelector":"[id*=\"smartcapture-block-gx3hunll51\"]","subjectIdentifiers":[{"name":"FIRST NAME","selector":"[name = \"FIRST_NAME\"]","isPrimary":false},{"name":"LAST NAME","selector":"[name = \"LAST_NAME\"]","isPrimary":false},{"name":"EMAIL ADDRESS *","selector":"[name = \"EMAIL_ADDRESS\"]","isPrimary":true}],"consentIdentifiers":[{"type":"NoUIElement","name":"DefaultElementId","selector":"DefaultElementSelector","propertyId":6260,"consentValue":"DefaultConsentValue"}],"consentTrigger":{"action":"click","selector":"[class = \"sc-button\"]"}},
+        url: 'https://app.securiti.ai/privaci/v1/',
+        authToken:'ad1cd05a-9c26-4da3-9b57-a42f98bb5af6',
+        orgId:'1',
+        onConsentSuccess: null,
+        onConsentFailure: null
+    })
+})</script>
   </body>
   <footer>
   </footer>
