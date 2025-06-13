@@ -52,6 +52,40 @@
     getTestCookie();
   }
   </script>	
+
+<script>
+  function setTestCookie2() {
+    document.cookie = "testCookie2=HelloWorld2; path=/; max-age=3600; secure";
+    console.log("Cookie2 has been set!");
+  }
+
+  function getTestCookie2() {
+    let cookieValue = getCookie("testCookie2");
+    if (cookieValue) {
+      console.log("Cookie value: " + cookieValue);
+    } else {
+      console.log("Cookie not found");
+    }
+  }
+
+
+  function getCookie(name) {
+    let cookieArr = document.cookie.split("; ");
+    for (let i = 0; i < cookieArr.length; i++) {
+      let cookiePair = cookieArr[i].split("=");
+      if (name === cookiePair[0]) {
+        return cookiePair[1];
+      }
+    }
+    return null;
+  }
+
+
+  window.onload = function() {
+    setTestCookie2();
+    getTestCookie2();
+  }
+  </script>	
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
